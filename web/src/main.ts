@@ -5,7 +5,8 @@ import { consensusRows, featuredRows, stripItems, type ConsensusRow } from "./co
 import { esc } from "./esc";
 import { agentIcon, logoMark } from "./icons";
 import { mountPicker } from "./picker";
-import { AGENTS, TRACKS, label, loadData, rankMap, safeUrl, trackName, type Data } from "./projects";
+import { AGENTS, TRACKS, label, loadData, safeUrl, trackName, type Data } from "./projects";
+import { filterRankings, projectRankings, type RankingRow } from "./rankings";
 import { countdown, places, rankBarWidth, readBoard, summarize, type Summary } from "./scoreboard";
 
 const $ = (id: string) => document.getElementById(id)!;
@@ -148,72 +149,106 @@ function renderConsensus(data: Data, showAll = false) {
   $("more").addEventListener("click", () => renderConsensus(data, !showAll));
 }
 
-/* ---------- find your project ---------- */
+/* ---------- project rankings ---------- */
 
-function ranksFor(data: Data): Record<string, Map<string, number>> {
-  const ranks: Record<string, Map<string, number>> = {};
-  for (const [name, out] of Object.entries(data.agents)) ranks[name] = rankMap(out.scores, data.byId);
-  return ranks;
-}
+const PAGE = 20;
 
-function renderDetail(id: string, data: Data, ranks: Record<string, Map<string, number>>) {
-  const p = data.byId.get(id);
-  if (!p) return;
+function detailHtml(row: RankingRow, data: Data) {
+  const p = data.byId.get(row.id)!;
   const total = data.projects.length;
-  const rowsHtml = Object.entries(AGENTS)
+  const bars = Object.entries(AGENTS)
     .map(([name, meta]) => {
       const out = data.agents[name];
-      const rank = ranks[name]?.get(id);
+      const rank = row.ranks[name];
       const picked = (out?.picks ?? [])
-        .filter((c) => c.ids.includes(id))
-        .map((c) => `<span class="chip">Picked ${esc(trackName(c.category))} #${c.ids.indexOf(id) + 1}</span>`)
+        .filter((c) => c.ids.includes(row.id))
+        .map((c) => `<span class="chip">Picked ${esc(trackName(c.category))} #${c.ids.indexOf(row.id) + 1}</span>`)
         .join("");
       const width = Math.round(rankBarWidth(rank, total) * 100);
       return `<div class="rrow">
         ${who(name)}
         <div class="bar"><i style="width:${width}%;background:${meta.color}"></i></div>
         <div class="rank">${rank ? `#${rank} <span>of ${total}</span>` : `<span>not ranked</span>`}</div>
-        <div class="why">${picked}${esc(out?.reasons[id] ?? "")}</div>
+        <div class="why">${picked}${esc(out?.reasons[row.id] ?? "")}</div>
       </div>`;
     })
     .join("");
-  $("detail").innerHTML = `<article class="result">
-    <div class="result-h"><h3><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(p.name)} ↗</a></h3>
+  return `<div class="result">
+    <div class="result-h"><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">Open on NearHunt ↗</a>
       <span class="chip">${p.tracks.map((t) => esc(trackName(t))).join(" · ")}</span></div>
     ${p.summary ? `<p class="says">Builder says: “${esc(p.summary)}”</p>` : ""}
-    ${rowsHtml}
-  </article>`;
+    ${bars}
+  </div>`;
 }
 
-function mountSearch(data: Data) {
-  const ranks = ranksFor(data);
+function mountRankings(data: Data) {
+  const all = projectRankings(data);
+  const names = Object.keys(AGENTS);
   const input = $("search") as HTMLInputElement;
-  const list = $("matches");
-  const show = (id: string) => {
-    list.innerHTML = "";
-    input.value = data.byId.get(id)?.name ?? "";
-    renderDetail(id, data, ranks);
-  };
-  input.addEventListener("input", () => {
-    const q = input.value.trim().toLowerCase();
-    const hits = q ? data.projects.filter((p) => p.name.toLowerCase().includes(q)).slice(0, 8) : [];
-    list.innerHTML = hits
-      .map((p) => `<li><button data-id="${esc(p.id)}">${esc(p.name)}<span>${p.tracks.map((t) => esc(trackName(t))).join(" · ")}</span></button></li>`)
+  const el = $("rankings");
+  let limit = PAGE;
+  let open: string | null = null;
+
+  function render() {
+    const found = filterRankings(all, input.value, data.byId);
+    if (found.length === 1) open = found[0].id;
+    const shown = found.slice(0, limit);
+    if (!found.length) {
+      el.innerHTML = `<p class="empty">No project matches “${esc(input.value.trim())}”.</p>`;
+      return;
+    }
+    const body = shown
+      .map((r) => {
+        const p = data.byId.get(r.id)!;
+        const isOpen = r.id === open;
+        const cells = names
+          .map((n) => `<td class="jr" style="color:${AGENTS[n].color}">${r.ranks[n] ? `#${r.ranks[n]}` : "—"}</td>`)
+          .join("");
+        const dots = `<span class="on">${"●".repeat(r.pickedBy)}</span><span class="off">${"●".repeat(Math.max(0, names.length - r.pickedBy))}</span>`;
+        return `<tr class="prow${isOpen ? " open" : ""}" data-id="${esc(r.id)}">
+            <td class="mono place">${r.place ?? "—"}</td>
+            <td><button class="pname" aria-expanded="${isOpen}">${esc(p.name)}</button><div class="ptracks">${p.tracks.map((t) => esc(trackName(t))).join(" · ")}</div></td>
+            ${cells}
+            <td class="pb"><span class="dots" aria-label="${r.pickedBy} of ${names.length} agents">${dots}</span></td>
+          </tr>${isOpen ? `<tr class="detail-row"><td colspan="${names.length + 3}">${detailHtml(r, data)}</td></tr>` : ""}`;
+      })
       .join("");
+    const more =
+      found.length > limit
+        ? `<button class="btn sm more" id="rank-more">Show ${Math.min(PAGE, found.length - limit)} more <span class="dim">· ${shown.length} of ${found.length}</span></button>`
+        : `<p class="small dim more">${found.length === all.length ? `All ${all.length} projects shown.` : `${found.length} of ${all.length} projects match.`}</p>`;
+    el.innerHTML = `<div class="table-scroll rankings"><table>
+        <thead><tr><th>#</th><th>Project</th>${names.map((n) => `<th title="${esc(n)}'s rank">${agentIcon(n, 22)}</th>`).join("")}<th>Picked by</th></tr></thead>
+        <tbody>${body}</tbody></table></div>${more}`;
+  }
+
+  input.addEventListener("input", () => {
+    limit = PAGE;
+    open = null;
+    render();
   });
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") list.querySelector<HTMLButtonElement>("button")?.click();
-    if (e.key === "ArrowDown") list.querySelector<HTMLButtonElement>("button")?.focus();
+  el.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("#rank-more")) {
+      limit += PAGE;
+      return render();
+    }
+    if (target.closest(".detail-row, a")) return;
+    const id = target.closest<HTMLElement>("tr.prow")?.dataset.id;
+    if (!id) return;
+    open = open === id ? null : id;
+    render();
   });
-  list.addEventListener("click", (e) => {
-    const id = (e.target as HTMLElement).closest("button")?.dataset.id;
-    if (id) show(id);
-  });
-  // Grand picks on the agent cards jump here.
+  // Grand picks on the agent cards jump to that project here.
   document.addEventListener("click", (e) => {
     const id = (e.target as HTMLElement).closest<HTMLElement>("[data-show]")?.dataset.show;
-    if (id) show(id);
+    if (!id) return;
+    input.value = data.byId.get(id)?.name ?? "";
+    limit = PAGE;
+    open = id;
+    render();
   });
+  render();
 }
 
 /* ---------- leaderboard ---------- */
@@ -300,7 +335,7 @@ async function start() {
   renderStrip(data);
   renderAgents(data);
   renderConsensus(data);
-  mountSearch(data);
+  mountRankings(data);
   mountPicker($("picker"), data, { onSubmitted: loadRows, onAccount: setAccount });
 }
 
