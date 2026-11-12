@@ -4,6 +4,7 @@ import { CATEGORY_ORDER } from "./consensus";
 import { esc } from "./esc";
 import { agentIcon } from "./icons";
 import { buildPicks, pickOptions } from "./picks";
+import { onChange } from "./scoreboard";
 import { AGENTS, TRACKS, type Data } from "./projects";
 import type * as WalletModule from "./wallet";
 
@@ -123,8 +124,10 @@ export function mountPicker(
   import("./wallet")
     .then(async (mod) => {
       wallet = mod;
-      await wallet.init(() => void render());
-      await render();
+      // Redraw only when the signed-in account changes, so other wallet updates never wipe unsaved choices.
+      const redraw = onChange<string | null>(() => void render());
+      await wallet.init(() => redraw(wallet.accountId()));
+      redraw(wallet.accountId());
     })
     .catch(() => {
       el.innerHTML = `<div class="panel"><p class="msg err">Couldn't load wallet sign-in. Refresh to try again.</p></div>`;

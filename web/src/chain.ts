@@ -1,7 +1,8 @@
 import { CONTRACT_ID, RPC_URLS } from "./config";
 
 /** Read-only contract call over JSON-RPC. No wallet needed. */
-export async function view<T>(method: string, args: object = {}): Promise<T> {
+/** Each RPC gets `timeoutMs` to answer before we try the next one. */
+export async function view<T>(method: string, args: object = {}, timeoutMs = 8000): Promise<T> {
   const body = JSON.stringify({
     jsonrpc: "2.0",
     id: "market",
@@ -17,7 +18,12 @@ export async function view<T>(method: string, args: object = {}): Promise<T> {
   let lastError: unknown;
   for (const url of RPC_URLS) {
     try {
-      const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body,
+        signal: AbortSignal.timeout(timeoutMs),
+      });
       const json = await res.json();
       if (json.error || json.result?.error) throw new Error(JSON.stringify(json.error ?? json.result.error));
       return JSON.parse(new TextDecoder().decode(new Uint8Array(json.result.result))) as T;

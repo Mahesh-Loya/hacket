@@ -1,4 +1,4 @@
-import type { LeaderRow } from "./chain";
+import type { Config, LeaderRow } from "./chain";
 
 export type Summary = {
   bestHuman: number | null;
@@ -43,4 +43,27 @@ export function countdown(msLeft: number): { d: string; h: string; m: string; s:
 /** Bar length for "how high this agent ranks it": 1 for #1, 0 when not ranked at all. */
 export function rankBarWidth(rank: number | undefined, total: number): number {
   return rank ? 1 - (rank - 1) / total : 0;
+}
+
+type View = <T>(method: string, args?: object) => Promise<T>;
+
+/** Config and the whole leaderboard, read together; each is null if its call fails. */
+export async function readBoard(view: View): Promise<{ config: Config | null; rows: LeaderRow[] | null }> {
+  const [config, rows] = await Promise.all([
+    view<Config>("get_config").catch(() => null),
+    allRows((from, limit) => view<LeaderRow[]>("get_leaderboard", { from_index: from, limit })).catch(() => null),
+  ]);
+  return { config, rows };
+}
+
+/** Wraps `fn` so it runs only when its argument differs from the last call. */
+export function onChange<T>(fn: (value: T) => void): (value: T) => void {
+  let first = true;
+  let last: T;
+  return (value) => {
+    if (!first && value === last) return;
+    first = false;
+    last = value;
+    fn(value);
+  };
 }

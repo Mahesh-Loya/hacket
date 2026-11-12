@@ -6,7 +6,7 @@ import { esc } from "./esc";
 import { agentIcon, logoMark } from "./icons";
 import { mountPicker } from "./picker";
 import { AGENTS, TRACKS, label, loadData, rankMap, safeUrl, type Data } from "./projects";
-import { allRows, countdown, rankBarWidth, summarize, type Summary } from "./scoreboard";
+import { countdown, rankBarWidth, readBoard, summarize, type Summary } from "./scoreboard";
 
 const $ = (id: string) => document.getElementById(id)!;
 
@@ -60,9 +60,9 @@ function renderScoreboard() {
 
   const bottom =
     left > 0
-      ? `<div class="count mono" aria-label="Time until picks lock">
-          <div><b>${c.d}</b><span>days</span></div><div><b>${c.h}</b><span>hrs</span></div>
-          <div><b>${c.m}</b><span>min</span></div><div><b>${c.s}</b><span>sec</span></div></div>`
+      ? `<div class="count mono" role="timer" aria-label="Time until picks lock">
+          <div><b data-t="d">${c.d}</b><span>days</span></div><div><b data-t="h">${c.h}</b><span>hrs</span></div>
+          <div><b data-t="m">${c.m}</b><span>min</span></div><div><b data-t="s" aria-hidden="true">${c.s}</b><span>sec</span></div></div>`
       : `<div class="board-state">${config?.has_results ? "Final leaderboard below" : "Picks locked · judging in progress"}</div>`;
 
   $("scoreboard").innerHTML = `
@@ -75,6 +75,18 @@ function renderScoreboard() {
     </div>
     <p class="board-note">${note}</p>
     ${bottom}`;
+}
+
+/** Every second: update only the countdown digits, so focus and screen readers aren't disturbed. */
+function tick() {
+  const left = LOCK_AT_MS - Date.now();
+  const digits = document.querySelectorAll<HTMLElement>("#scoreboard [data-t]");
+  if (left <= 0 || !digits.length) {
+    if (digits.length) renderScoreboard(); // the lock just passed: switch to the locked view
+    return;
+  }
+  const c = countdown(left);
+  digits.forEach((el) => (el.textContent = c[el.dataset.t as keyof typeof c]));
 }
 
 /* ---------- agreement strip ---------- */
@@ -206,11 +218,9 @@ function mountSearch(data: Data) {
 /* ---------- leaderboard ---------- */
 
 async function loadRows() {
-  try {
-    rows = await allRows((from, limit) => view<LeaderRow[]>("get_leaderboard", { from_index: from, limit }));
-  } catch {
-    rows = null;
-  }
+  const board = await readBoard(view);
+  rows = board.rows;
+  config = board.config ?? config;
   loaded = true;
   renderBoard();
   renderScoreboard();
@@ -267,17 +277,25 @@ function setAccount(account: string | null) {
 async function start() {
   renderChrome();
   renderScoreboard();
-  setInterval(renderScoreboard, 1000);
-  const [data, cfg] = await Promise.all([loadData(), view<Config>("get_config").catch(() => null)]);
-  config = cfg;
+  setInterval(tick, 1000);
+  // The contract is read separately so a slow RPC never holds back the agent data.
+  void loadRows();
+  setInterval(loadRows, 60_000);
+  let data: Data;
+  try {
+    data = await loadData();
+  } catch {
+    for (const id of ["agents", "consensus", "picker"]) {
+      $(id).innerHTML = `<p class="empty">Couldn't load the agents' data. Refresh to try again.</p>`;
+    }
+    return;
+  }
   renderStats(data);
   renderStrip(data);
   renderAgents(data);
   renderConsensus(data);
   mountSearch(data);
   mountPicker($("picker"), data, { onSubmitted: loadRows, onAccount: setAccount });
-  await loadRows();
-  setInterval(loadRows, 60_000);
 }
 
 start();

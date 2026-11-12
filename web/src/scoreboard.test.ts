@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { LeaderRow } from "./chain";
-import { allRows, countdown, rankBarWidth, summarize } from "./scoreboard";
+import { allRows, countdown, onChange, rankBarWidth, readBoard, summarize } from "./scoreboard";
 
 const r = (account_id: string, score: number, is_agent: boolean): LeaderRow => ({ account_id, score, is_agent, updated_ns: "0" });
 
@@ -55,5 +55,36 @@ describe("rankBarWidth", () => {
     expect(rankBarWidth(1, 678)).toBe(1);
     expect(rankBarWidth(678, 678)).toBeCloseTo(1 / 678);
     expect(rankBarWidth(undefined, 678)).toBe(0);
+  });
+});
+
+describe("readBoard", () => {
+  it("reads config and every leaderboard page", async () => {
+    const calls: string[] = [];
+    const got = await readBoard(async <T>(method: string, args: object = {}) => {
+      calls.push(method);
+      if (method === "get_config") return { has_results: true } as T;
+      return ((args as { from_index: number }).from_index === 0 ? [r("a.testnet", 1, false)] : []) as T;
+    });
+    expect(got.config?.has_results).toBe(true);
+    expect(got.rows).toHaveLength(1);
+    expect(calls).toContain("get_config");
+  });
+
+  it("keeps the leaderboard when config fails, and vice versa", async () => {
+    const got = await readBoard(async <T>(method: string) => {
+      if (method === "get_config") throw new Error("down");
+      return [] as T;
+    });
+    expect(got).toEqual({ config: null, rows: [] });
+  });
+});
+
+describe("onChange", () => {
+  it("calls only when the value changes", () => {
+    const seen: (string | null)[] = [];
+    const f = onChange<string | null>((v) => seen.push(v));
+    f(null); f(null); f("a.testnet"); f("a.testnet"); f(null);
+    expect(seen).toEqual([null, "a.testnet", null]);
   });
 });
