@@ -2,13 +2,10 @@ import "./style.css";
 import { view, type Config, type LeaderRow } from "./chain";
 import { CONTRACT_ID, EXPLORER, LOCK_AT_MS, REPO_URL } from "./config";
 import { AGENTS, TRACKS, label, loadData, type Data } from "./projects";
+import { esc } from "./esc";
 import { mountPicker } from "./picker";
 
 const $ = (id: string) => document.getElementById(id)!;
-
-export function esc(s: string): string {
-  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-}
 
 function agentOf(accountId: string): string | null {
   const name = accountId.split(".")[0];
