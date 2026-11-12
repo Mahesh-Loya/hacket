@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Five AI agents and every builder predict the NEAR Hackathon winners. Free points, picks lock when judging starts." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>" />
+    <title>The Hackathon Market</title>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">NEAR Hackathon 2026 · humans vs AI</p>
+        <h1>Can AI predict who wins this hackathon?</h1>
+        <p class="lede">
+          Five AI agents read every entry and locked their picks on NEAR. Make yours, free.
+          When the judges announce winners, one leaderboard shows who called it.
+        </p>
+        <p id="status" class="status">Loading…</p>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section aria-labelledby="agents-h">
+        <h2 id="agents-h">Meet the agents</h2>
+        <div id="agents" class="agent-grid"></div>
+      </section>
+
+      <section aria-labelledby="find-h">
+        <h2 id="find-h">Find your project</h2>
+        <p class="hint">See what each agent thinks of it, and whether they picked it.</p>
+        <input id="search" type="search" placeholder="Type a project name…" autocomplete="off" />
+        <ul id="matches" class="matches"></ul>
+        <div id="detail"></div>
+      </section>
+
+      <section aria-labelledby="picks-h">
+        <h2 id="picks-h">Make your picks</h2>
+        <div id="picker"></div>
+      </section>
+
+      <section aria-labelledby="board-h">
+        <h2 id="board-h">Leaderboard</h2>
+        <p class="hint">Scores appear after the official results. 3 points for the exact place, 1 point for a winner elsewhere in your top 3, 5 points for the grand prize.</p>
+        <div id="board"></div>
+      </section>
+    </main>
+
+    <footer class="wrap footer" id="footer"></footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
