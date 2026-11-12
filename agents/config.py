@@ -7,7 +7,7 @@ PERSONA_NAMES = ["screener", "mechanist", "builder", "hype", "contrarian"]
 
 NEARHUNT_API = "https://nearhunt.xyz/api/projects"
 NEARHUNT_WRITER = "nearhunt.near"
-USER_AGENT = "hackathon-market (+https://github.com/hackket)"
+USER_AGENT = "hackathon-market (+https://github.com/Mahesh-Loya/hacket)"
 
 TRACKS = ["defi", "thesis", "privacy", "business", "swarms", "security", "agents",
           "realworld", "games", "nfts", "memecoins", "social", "open"]
