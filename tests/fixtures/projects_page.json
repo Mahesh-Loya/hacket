@@ -1,0 +1,135 @@
+{
+ "items": [
+  {
+   "submission_id": "fe292050-bdfa-482d-ab08-4d1355e49f3f",
+   "name": "Nims",
+   "description": "Built at NEAR HACKATHON: Nims, a market town where every trader is an AI agent with its own wallet. Flood the market and prices crash. Goods are NEP-245 tokens on NEAR. You sign in with an email and never see the chain. @NEARProtocol #NEARHackathon @NearBuilders",
+   "tracks": [
+    "games"
+   ],
+   "repository_url": null,
+   "links": [
+    {
+     "check": {
+      "checked_at": "2026-11-09T03:56:09.478Z",
+      "http_status": 200,
+      "verdict": "live"
+     },
+     "kind": "website",
+     "kind_basis": "default",
+     "source_post_id": "2118292642647904699",
+     "url": "https://nims-app.up.railway.app"
+    }
+   ],
+   "media": [
+    {
+     "duration_ms": 98730,
+     "height": 1080,
+     "post_url": "https://x.com/marrnueldev/status/2118292623358341128",
+     "type": "video",
+     "url": "https://pbs.twimg.com/amplify_video_thumb/2118286800695316480/img/spOagiKNmIm2lBac.jpg",
+     "width": 1920
+    }
+   ],
+   "votes": 5,
+   "comments": 6,
+   "account": "nearhunt.near",
+   "updated_at": "2026-11-11T22:33:20.944Z",
+   "url": "https://nearhunt.xyz/p/fe292050-bdfa-482d-ab08-4d1355e49f3f",
+   "demo_url": "https://x.com/marrnueldev/status/2120169484673486926?a=CYIDt-osW_dV274A2S0&s=20"
+  },
+  {
+   "submission_id": "113cfb76-5188-4770-8f17-92003dabedb3",
+   "name": "NEAR Agent Census",
+   "description": null,
+   "tracks": [
+    "thesis"
+   ],
+   "repository_url": null,
+   "links": null,
+   "media": null,
+   "votes": 0,
+   "comments": 0,
+   "account": "nearhunt.near",
+   "updated_at": "2026-11-11T22:33:20.944Z",
+   "url": "https://nearhunt.xyz/p/113cfb76-5188-4770-8f17-92003dabedb3",
+   "demo_url": "https://x.com/DaYouNGdeboss/status/2120143959267709276"
+  },
+  {
+   "submission_id": "d32938c4-f4c7-467d-ae21-49b021324f7e",
+   "name": "Impostor",
+   "description": "Built at NEAR HACKATHON: Bound Wallet, a policy-enforced wallet for AI agents on @NEARProtocol. A NEAR key caps gas, not value. Bound moves every limit into a contract the agent cannot change. Live on mainnet, every decision on chain. #NEARHackathon @NEARLegion",
+   "tracks": [
+    "business",
+    "security",
+    "agents"
+   ],
+   "repository_url": "https://github.com/blocknbull/bound-wallet",
+   "links": [
+    {
+     "check": {
+      "checked_at": "2026-11-11T19:47:07.688Z",
+      "http_status": 200,
+      "verdict": "live"
+     },
+     "kind": "website",
+     "kind_basis": "default",
+     "source_post_id": "2120454582186938568",
+     "url": "https://boundwallet-app.vercel.app"
+    },
+    {
+     "check": {
+      "checked_at": "2026-11-11T19:47:08.335Z",
+      "http_status": 200,
+      "verdict": "live"
+     },
+     "kind": "website",
+     "kind_basis": "default",
+     "source_post_id": "2120454582186938568",
+     "url": "https://boundwallet.vercel.app"
+    }
+   ],
+   "media": [
+    {
+     "alt": null,
+     "height": 1080,
+     "post_url": "https://x.com/boundwallet/status/2120088007449747638",
+     "type": "photo",
+     "url": "https://pbs.twimg.com/media/HWwNJQ2bcAAjyRE.jpg",
+     "width": 1920
+    },
+    {
+     "alt": null,
+     "height": 1080,
+     "post_url": "https://x.com/boundwallet/status/2120088007449747638",
+     "type": "photo",
+     "url": "https://pbs.twimg.com/media/HWwNJQfbkAAacTc.jpg",
+     "width": 1920
+    },
+    {
+     "alt": null,
+     "height": 1080,
+     "post_url": "https://x.com/boundwallet/status/2120088007449747638",
+     "type": "photo",
+     "url": "https://pbs.twimg.com/media/HWwNJQga4AAsuU_.jpg",
+     "width": 1920
+    },
+    {
+     "alt": null,
+     "height": 1080,
+     "post_url": "https://x.com/boundwallet/status/2120088007449747638",
+     "type": "photo",
+     "url": "https://pbs.twimg.com/media/HWwNJQfbEAAVbTZ.jpg",
+     "width": 1920
+    }
+   ],
+   "votes": 1,
+   "comments": 0,
+   "account": "impostor.near",
+   "updated_at": "2026-11-11T22:33:20.944Z",
+   "url": "https://nearhunt.xyz/p/d32938c4-f4c7-467d-ae21-49b021324f7e",
+   "demo_url": "https://x.com/boundwallet/status/2120088007449747638"
+  }
+ ],
+ "next_cursor": null
+}
