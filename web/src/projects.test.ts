@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { label, type Project } from "./projects";
+import { AGENTS, label, type Project } from "./projects";
 
 const nims: Project = {
   id: "fe292050-bdfa-482d-ab08-4d1355e49f3f",
@@ -40,5 +40,17 @@ describe("safeUrl", () => {
   it("blocks javascript: and other schemes", () => {
     expect(safeUrl("javascript:alert(1)")).toBe("#");
     expect(safeUrl("not a url")).toBe("#");
+  });
+});
+
+describe("agent identity", () => {
+  it("gives every agent a colour and an SVG icon", async () => {
+    const { agentIcon } = await import("./icons");
+    for (const [name, meta] of Object.entries(AGENTS)) {
+      expect(meta.color).toMatch(/^#[0-9a-f]{6}$/);
+      expect(meta.looks.length).toBeGreaterThan(0);
+      expect(agentIcon(name)).toMatch(/^<svg/);
+    }
+    expect(Object.keys(AGENTS)).toEqual(["screener", "mechanist", "builder", "hype", "contrarian"]);
   });
 });

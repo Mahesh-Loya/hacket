@@ -15,7 +15,7 @@ let modal: WalletSelectorModal;
 
 export async function init(onChange: () => void) {
   selector = await setupWalletSelector({ network: NETWORK, modules: [setupMyNearWallet(), setupMeteorWallet()] });
-  modal = setupModal(selector, { contractId: CONTRACT_ID });
+  modal = setupModal(selector, { contractId: CONTRACT_ID, theme: "dark" });
   selector.store.observable.subscribe(onChange);
 }
 

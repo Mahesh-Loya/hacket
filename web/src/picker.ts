@@ -1,11 +1,15 @@
 import { view, type Entry } from "./chain";
 import { LOCK_AT_MS } from "./config";
+import { CATEGORY_ORDER } from "./consensus";
 import { esc } from "./esc";
+import { agentIcon } from "./icons";
 import { buildPicks, pickOptions } from "./picks";
 import { AGENTS, TRACKS, type Data } from "./projects";
 import type * as WalletModule from "./wallet";
 
 let wallet: typeof WalletModule;
+
+const PLACES = ["1st", "2nd", "3rd"];
 
 function slotsFor(category: string) {
   return category === "grand" ? 1 : 3;
@@ -19,26 +23,27 @@ function options(category: string, data: Data, chosen: string) {
 
 function renderForm(el: HTMLElement, data: Data, current: Entry | null, locked: boolean) {
   const byCat = new Map((current?.picks ?? []).map((p) => [p.category, p.ids]));
-  const fields = Object.keys(TRACKS)
-    .map((cat) => {
-      const chosen = byCat.get(cat) ?? [];
-      const selects = Array.from({ length: slotsFor(cat) }, (_, i) =>
-        `<select data-cat="${cat}" aria-label="${esc(TRACKS[cat])} place ${i + 1}"${locked ? " disabled" : ""}>${options(cat, data, chosen[i] ?? "")}</select>`,
-      ).join("");
-      return `<div><label>${esc(TRACKS[cat])}</label>${selects}</div>`;
-    })
+  const dis = locked ? " disabled" : "";
+  const cards = CATEGORY_ORDER.map((cat) => {
+    const chosen = byCat.get(cat) ?? [];
+    const slots = Array.from({ length: slotsFor(cat) }, (_, i) => {
+      const place = cat === "grand" ? "Winner" : PLACES[i];
+      return `<label class="slot">${cat === "grand" ? "" : `<span>${place}</span>`}<select data-cat="${cat}" aria-label="${esc(TRACKS[cat])}, ${place}"${dis}>${options(cat, data, chosen[i] ?? "")}</select></label>`;
+    }).join("");
+    return `<div class="cat-card${cat === "grand" ? " grand" : ""}"><div class="t">${esc(TRACKS[cat])}</div>${slots}</div>`;
+  }).join("");
+  const copy = Object.keys(AGENTS)
+    .map((name) => `<button class="btn sm" data-copy="${name}"${dis}>${agentIcon(name, 20)}<span style="text-transform:capitalize">${name}</span></button>`)
     .join("");
-  const copy = Object.entries(AGENTS)
-    .map(([name, m]) => `<button class="btn" data-copy="${name}"${locked ? " disabled" : ""}>${m.emoji} ${name}</button>`)
-    .join("");
-  el.innerHTML = `
-    <div class="row"><span>Signed in as <b>${esc(wallet.accountId() ?? "")}</b></span><button class="btn" id="signout">Sign out</button></div>
+  el.innerHTML = `<div class="panel">
+    <div class="picker-top"><span>Signed in as <b>${esc(wallet.accountId() ?? "")}</b></span><button class="btn sm" id="signout">Sign out</button></div>
     ${locked ? '<p class="notice">Picks are locked. Judging has started.</p>' : ""}
-    <p class="hint">Quick start: copy an agent's picks, then change what you disagree with. Fill as many tracks as you like.</p>
-    <div class="row">${copy}</div>
-    <div class="picker-grid">${fields}</div>
-    <div class="row"><button class="btn primary" id="submit"${locked ? " disabled" : ""}>${current ? "Update my picks" : "Lock in my picks"}</button><span id="msg" class="small"></span></div>
-    <p class="small muted">Saving sends one transaction with 0.05 testnet NEAR attached. The contract keeps what your picks' storage costs (about 0.02) and refunds the rest. Testnet NEAR is free play money.</p>`;
+    ${current ? '<p class="msg ok" style="margin:0 0 18px">Your picks are saved on NEAR. Change anything and save again until the lock.</p>' : ""}
+    <div class="copy"><div class="k">Start from an agent's picks, then change what you disagree with</div><div class="row">${copy}</div></div>
+    <div class="picker-grid">${cards}</div>
+    <div class="save"><button class="btn pri" id="submit"${dis}>${current ? "Update my picks" : "Lock in my picks"}</button><span id="msg" class="msg" role="status"></span></div>
+    <p class="note">Saving sends one transaction with 0.05 testnet NEAR attached. The contract keeps what your picks' storage costs (about 0.02) and refunds the rest. Testnet NEAR is free play money.</p>
+  </div>`;
 }
 
 function readSelection(el: HTMLElement): Record<string, string[]> {
@@ -59,16 +64,28 @@ function fillFrom(el: HTMLElement, picks: { category: string; ids: string[] }[])
   });
 }
 
-export function mountPicker(el: HTMLElement, data: Data, onSubmitted: () => void) {
+function setMsg(el: HTMLElement, kind: "ok" | "err" | "wait", text: string) {
+  const msg = el.querySelector<HTMLElement>("#msg")!;
+  msg.className = `msg ${kind}`;
+  msg.textContent = text;
+}
+
+export function mountPicker(
+  el: HTMLElement,
+  data: Data,
+  hooks: { onSubmitted: () => void; onAccount: (account: string | null) => void },
+) {
   const locked = () => Date.now() >= LOCK_AT_MS;
+  const navButton = document.getElementById("nav-signin");
 
   async function render() {
     const account = wallet.accountId();
+    hooks.onAccount(account);
     if (!account) {
-      el.innerHTML = `
-        <p>Sign in with a NEAR <b>testnet</b> wallet to save your picks on-chain. It's free.</p>
-        <div class="row"><button class="btn primary" id="signin"${locked() ? " disabled" : ""}>Sign in to pick</button>
-        <a class="small" href="https://testnet.mynearwallet.com/create" target="_blank" rel="noopener">No testnet account? Make one free in a minute</a></div>`;
+      el.innerHTML = `<div class="panel signed-out">
+        <p>Sign in with a NEAR <b>testnet</b> wallet to save your picks on-chain. It's free and takes a minute.
+          <a class="small muted" href="https://testnet.mynearwallet.com/create" target="_blank" rel="noopener">No testnet account? Make one here ↗</a></p>
+        <button class="btn pri" id="signin"${locked() ? " disabled" : ""}>Sign in to pick</button></div>`;
       el.querySelector("#signin")?.addEventListener("click", () => wallet.signIn());
       return;
     }
@@ -76,23 +93,33 @@ export function mountPicker(el: HTMLElement, data: Data, onSubmitted: () => void
     renderForm(el, data, current, locked());
     el.querySelector("#signout")?.addEventListener("click", () => wallet.signOut());
     el.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((b) =>
-      b.addEventListener("click", () => fillFrom(el, data.agents[b.dataset.copy!].picks)),
+      b.addEventListener("click", () => {
+        fillFrom(el, data.agents[b.dataset.copy!].picks);
+        setMsg(el, "wait", `Copied ${b.dataset.copy}'s picks. Change any you like, then save.`);
+      }),
     );
     el.querySelector("#submit")?.addEventListener("click", async () => {
-      const msg = el.querySelector("#msg")!;
       try {
         const picks = buildPicks(readSelection(el));
-        msg.textContent = "Waiting for your wallet…";
+        setMsg(el, "wait", "Waiting for your wallet…");
         await wallet.submitPicks(picks);
-        msg.textContent = "Saved on NEAR testnet.";
-        onSubmitted();
+        setMsg(el, "ok", "Saved on NEAR testnet.");
+        hooks.onSubmitted();
       } catch (e) {
-        msg.textContent = e instanceof Error ? e.message : "Something went wrong. Try again.";
+        setMsg(el, "err", e instanceof Error ? e.message : "Something went wrong. Try again.");
       }
     });
   }
 
-  el.textContent = "Loading wallet…";
+  // The nav button signs in when signed out; when signed in it is a link to this section.
+  navButton?.addEventListener("click", (e) => {
+    if (wallet && !wallet.accountId() && !locked()) {
+      e.preventDefault();
+      wallet.signIn();
+    }
+  });
+
+  el.innerHTML = `<div class="panel muted">Loading wallet…</div>`;
   import("./wallet")
     .then(async (mod) => {
       wallet = mod;
@@ -100,6 +127,6 @@ export function mountPicker(el: HTMLElement, data: Data, onSubmitted: () => void
       await render();
     })
     .catch(() => {
-      el.textContent = "Couldn't load wallet sign-in. Refresh to try again.";
+      el.innerHTML = `<div class="panel"><p class="msg err">Couldn't load wallet sign-in. Refresh to try again.</p></div>`;
     });
 }

@@ -1,51 +1,145 @@
 import "./style.css";
 import { view, type Config, type LeaderRow } from "./chain";
 import { CONTRACT_ID, EXPLORER, LOCK_AT_MS, REPO_URL } from "./config";
-import { AGENTS, TRACKS, label, loadData, rankMap, safeUrl, type Data } from "./projects";
+import { consensusRows, featuredRows, stripItems, type ConsensusRow } from "./consensus";
 import { esc } from "./esc";
+import { agentIcon, logoMark } from "./icons";
 import { mountPicker } from "./picker";
+import { AGENTS, TRACKS, label, loadData, rankMap, safeUrl, type Data } from "./projects";
+import { allRows, countdown, rankBarWidth, summarize, type Summary } from "./scoreboard";
 
 const $ = (id: string) => document.getElementById(id)!;
 
+let me: string | null = null;
+let config: Config | null = null;
+let rows: LeaderRow[] | null = null;
+let loaded = false;
+
 function agentOf(accountId: string): string | null {
   const name = accountId.split(".")[0];
-  return name in AGENTS && accountId.endsWith(".hackket.testnet") ? name : null;
+  return name in AGENTS && accountId === `${name}.hackket.testnet` ? name : null;
 }
 
-function renderStatus(config: Config | null) {
-  const el = $("status");
-  const left = LOCK_AT_MS - Date.now();
-  if (left > 0) {
-    const d = Math.floor(left / 86_400_000);
-    const h = Math.floor((left % 86_400_000) / 3_600_000);
-    const m = Math.floor((left % 3_600_000) / 60_000);
-    el.textContent = `Picks lock in ${d}d ${h}h ${m}m (16 Nov 00:00 UTC, when judging starts)`;
-  } else if (!config?.has_results) {
-    el.textContent = "Picks are locked. Waiting for the official results.";
-  } else {
-    el.textContent = "Official results are in. Final leaderboard below.";
-  }
+function who(name: string) {
+  return `<span class="who">${agentIcon(name, 22)}${esc(name)}</span>`;
 }
+
+function shortCat(category: string) {
+  return category === "grand" ? "GRAND" : category.toUpperCase();
+}
+
+/* ---------- hero ---------- */
+
+function renderStats(data: Data) {
+  $("hero-stats").innerHTML = [
+    [data.projects.length, "entries ranked"],
+    [Object.keys(TRACKS).length, "categories"],
+    [Object.keys(AGENTS).length, "AI judges"],
+  ]
+    .map(([n, t]) => `<div><b>${n}</b>${t}</div>`)
+    .join("");
+}
+
+function side(lbl: string, num: number | null, sub: string, leads: boolean) {
+  return `<div class="side${leads ? " lead-side" : ""}"><div class="lbl">${lbl}</div><div class="num">${num ?? "—"}</div><div class="sub">${sub}</div></div>`;
+}
+
+function renderScoreboard() {
+  const s: Summary | null = summarize(rows, config?.has_results ?? false);
+  const reachable = rows !== null;
+  const left = LOCK_AT_MS - Date.now();
+  const c = countdown(left);
+  const players = (n: number) => `${n} ${n === 1 ? "player" : "players"}`;
+  let note: string;
+  if (!loaded) note = "Reading the contract…";
+  else if (!reachable) note = "Couldn't reach NEAR right now. Retrying…";
+  else if (!config?.has_results) note = "Scores appear when winners are announced (~18 Nov)";
+  else if (s?.leader === "tied") note = "Tied. Humans and AI share the top score.";
+  else if (s?.leader) note = `${s.leader === "humans" ? "Humans" : "AI"} lead. Final results are in.`;
+  else note = "Final results are in.";
+
+  const bottom =
+    left > 0
+      ? `<div class="count mono" aria-label="Time until picks lock">
+          <div><b>${c.d}</b><span>days</span></div><div><b>${c.h}</b><span>hrs</span></div>
+          <div><b>${c.m}</b><span>min</span></div><div><b>${c.s}</b><span>sec</span></div></div>`
+      : `<div class="board-state">${config?.has_results ? "Final leaderboard below" : "Picks locked · judging in progress"}</div>`;
+
+  $("scoreboard").innerHTML = `
+    <div class="board-h"><span class="live${reachable || !loaded ? "" : " down"}">${reachable || !loaded ? "Live on NEAR" : "Offline"}</span>
+      <a class="mono" href="${EXPLORER}" target="_blank" rel="noopener">${CONTRACT_ID}</a></div>
+    <div class="vs">
+      ${side("Humans", s?.bestHuman ?? null, `best score · ${s ? players(s.humans) : "—"}`, s?.leader === "humans")}
+      <div class="vsx">vs</div>
+      ${side("AI", s?.bestAi ?? null, `best score · ${s ? `${s.agents} agents` : "—"}`, s?.leader === "ai")}
+    </div>
+    <p class="board-note">${note}</p>
+    ${bottom}`;
+}
+
+/* ---------- agreement strip ---------- */
+
+function renderStrip(data: Data) {
+  const items = stripItems(data.agents).map((it) => {
+    if (it.kind === "category") {
+      const what = it.leaders.length
+        ? `<b>${it.leaders.map((id) => esc(label(id, data.byId))).join(" · ")}</b> · ${it.count}/5 agents agree`
+        : "no two agents agree";
+      return `<span class="strip-item">${shortCat(it.category)} #1 · ${what}</span>`;
+    }
+    const dots = `<span class="on">${"●".repeat(it.agents)}</span><span class="off">${"●".repeat(Math.max(0, 5 - it.agents))}</span>`;
+    return `<span class="strip-item"><b>${esc(label(it.id, data.byId))}</b> · picked by ${it.agents}/5 agents<span class="dots" aria-hidden="true">${dots}</span></span>`;
+  });
+  // The list is drawn twice so the scroll can loop without a gap; the copy is hidden from screen readers.
+  $("strip").innerHTML = `<div class="strip-track"><div>${items.join("")}</div><div aria-hidden="true">${items.join("")}</div></div>`;
+}
+
+/* ---------- judges ---------- */
 
 function renderAgents(data: Data) {
   $("agents").innerHTML = Object.entries(AGENTS)
     .map(([name, meta]) => {
-      const out = data.agents[name];
-      const grand = out?.picks.find((p) => p.category === "grand")?.ids[0];
-      return `<article class="card agent">
-        <div class="agent-head"><span class="emoji" aria-hidden="true">${meta.emoji}</span><strong>${name}</strong></div>
-        <p class="muted">${esc(meta.question)}</p>
-        <p class="small">Grand prize pick: <b>${grand ? esc(label(grand, data.byId)) : "—"}</b></p>
+      const grand = data.agents[name]?.picks.find((p) => p.category === "grand")?.ids[0];
+      return `<article class="agent">
+        ${agentIcon(name)}
+        <div><div class="nm">${esc(name)}</div><div class="q">${esc(meta.question)}</div></div>
+        <div><div class="looks">${esc(meta.looks)}</div><div class="rule" style="background:${meta.color}"></div></div>
+        <div><div class="k">Grand pick</div><div class="pick">${grand ? `<a href="#find-sec" data-show="${esc(grand)}">${esc(label(grand, data.byId))}</a>` : "—"}</div></div>
       </article>`;
     })
     .join("");
 }
 
+/* ---------- consensus ---------- */
+
+function renderConsensus(data: Data, showAll = false) {
+  const all = consensusRows(data.agents);
+  const shown: ConsensusRow[] = showAll ? all : featuredRows(all);
+  const names = Object.keys(AGENTS);
+  const cell = (r: ConsensusRow, name: string) => {
+    const id = r.top[name];
+    if (!id) return `<td class="dim">—</td>`;
+    const agrees = r.agree && r.leaders[0] === id;
+    return `<td${agrees ? ' class="agree"' : ""}>${esc(label(id, data.byId))}</td>`;
+  };
+  const cons = (r: ConsensusRow) =>
+    r.leaders.length
+      ? `${r.leaders.map((id) => esc(label(id, data.byId))).join(" · ")} <span class="dim">${r.count}/5${r.leaders.length > 1 ? " each" : ""}</span>`
+      : `<span class="dim">split</span>`;
+  $("consensus").innerHTML = `<div class="table-scroll consensus"><table>
+      <thead><tr><th>Category</th>${names.map((n) => `<th>${who(n)}</th>`).join("")}<th>Consensus</th></tr></thead>
+      <tbody>${shown
+        .map((r) => `<tr><td class="cat">${esc(TRACKS[r.category])}</td>${names.map((n) => cell(r, n)).join("")}<td class="cons">${cons(r)}</td></tr>`)
+        .join("")}</tbody></table></div>
+    <button class="btn sm more" id="more">${showAll ? "Show fewer" : `Show all ${all.length}`}</button>`;
+  $("more").addEventListener("click", () => renderConsensus(data, !showAll));
+}
+
+/* ---------- find your project ---------- */
+
 function ranksFor(data: Data): Record<string, Map<string, number>> {
   const ranks: Record<string, Map<string, number>> = {};
-  for (const [name, out] of Object.entries(data.agents)) {
-    ranks[name] = rankMap(out.scores, data.byId);
-  }
+  for (const [name, out] of Object.entries(data.agents)) ranks[name] = rankMap(out.scores, data.byId);
   return ranks;
 }
 
@@ -53,26 +147,28 @@ function renderDetail(id: string, data: Data, ranks: Record<string, Map<string, 
   const p = data.byId.get(id);
   if (!p) return;
   const total = data.projects.length;
-  const rows = Object.entries(AGENTS)
+  const rowsHtml = Object.entries(AGENTS)
     .map(([name, meta]) => {
       const out = data.agents[name];
-      const picked = out.picks
+      const rank = ranks[name]?.get(id);
+      const picked = (out?.picks ?? [])
         .filter((c) => c.ids.includes(id))
-        .map((c) => `<span class="chip">${esc(TRACKS[c.category] ?? c.category)} #${c.ids.indexOf(id) + 1}</span>`)
-        .join(" ");
-      const rank = ranks[name].get(id);
-      return `<tr>
-        <td><span aria-hidden="true">${meta.emoji}</span> ${name}</td>
-        <td>${rank ? `#${rank} of ${total}` : "excluded"}</td>
-        <td>${picked || '<span class="muted">not picked</span>'}<div class="small muted">${esc(out.reasons[id] ?? "")}</div></td>
-      </tr>`;
+        .map((c) => `<span class="chip">Picked ${esc(TRACKS[c.category] ?? c.category)} #${c.ids.indexOf(id) + 1}</span>`)
+        .join("");
+      const width = Math.round(rankBarWidth(rank, total) * 100);
+      return `<div class="rrow">
+        ${who(name)}
+        <div class="bar"><i style="width:${width}%;background:${meta.color}"></i></div>
+        <div class="rank">${rank ? `#${rank} <span>of ${total}</span>` : `<span>not ranked</span>`}</div>
+        <div class="why">${picked}${esc(out?.reasons[id] ?? "")}</div>
+      </div>`;
     })
     .join("");
-  $("detail").innerHTML = `<article class="card">
-    <h3><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(p.name)}</a></h3>
-    <p class="muted small">${p.tracks.map((t) => esc(TRACKS[t] ?? t)).join(" · ")}</p>
-    ${p.summary ? `<p class="small">Builder says: “${esc(p.summary)}”</p>` : ""}
-    <div class="table-scroll"><table><thead><tr><th>Agent</th><th>Ranks it</th><th>Picked?</th></tr></thead><tbody>${rows}</tbody></table></div>
+  $("detail").innerHTML = `<article class="result">
+    <div class="result-h"><h3><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(p.name)} ↗</a></h3>
+      <span class="chip">${p.tracks.map((t) => esc(TRACKS[t] ?? t)).join(" · ")}</span></div>
+    ${p.summary ? `<p class="says">Builder says: “${esc(p.summary)}”</p>` : ""}
+    ${rowsHtml}
   </article>`;
 }
 
@@ -80,59 +176,108 @@ function mountSearch(data: Data) {
   const ranks = ranksFor(data);
   const input = $("search") as HTMLInputElement;
   const list = $("matches");
+  const show = (id: string) => {
+    list.innerHTML = "";
+    input.value = data.byId.get(id)?.name ?? "";
+    renderDetail(id, data, ranks);
+  };
   input.addEventListener("input", () => {
     const q = input.value.trim().toLowerCase();
     const hits = q ? data.projects.filter((p) => p.name.toLowerCase().includes(q)).slice(0, 8) : [];
-    list.innerHTML = hits.map((p) => `<li><button data-id="${esc(p.id)}">${esc(p.name)}</button></li>`).join("");
+    list.innerHTML = hits
+      .map((p) => `<li><button data-id="${esc(p.id)}">${esc(p.name)}<span>${p.tracks.map((t) => esc(TRACKS[t] ?? t)).join(" · ")}</span></button></li>`)
+      .join("");
+  });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") list.querySelector<HTMLButtonElement>("button")?.click();
+    if (e.key === "ArrowDown") list.querySelector<HTMLButtonElement>("button")?.focus();
   });
   list.addEventListener("click", (e) => {
     const id = (e.target as HTMLElement).closest("button")?.dataset.id;
-    if (!id) return;
-    list.innerHTML = "";
-    renderDetail(id, data, ranks);
+    if (id) show(id);
+  });
+  // Grand picks on the agent cards jump here.
+  document.addEventListener("click", (e) => {
+    const id = (e.target as HTMLElement).closest<HTMLElement>("[data-show]")?.dataset.show;
+    if (id) show(id);
   });
 }
 
-async function renderBoard() {
-  const el = $("board");
+/* ---------- leaderboard ---------- */
+
+async function loadRows() {
   try {
-    const rows = await view<LeaderRow[]>("get_leaderboard", { from_index: 0, limit: 200 });
-    if (!rows.length) {
-      el.innerHTML = `<p class="muted">No picks yet. Be the first.</p>`;
-      return;
-    }
-    el.innerHTML = `<div class="table-scroll"><table><thead><tr><th>#</th><th>Player</th><th>Points</th></tr></thead><tbody>${rows
-      .map((r, i) => {
-        const agent = agentOf(r.account_id);
-        const who = agent
-          ? `<span aria-hidden="true">${AGENTS[agent].emoji}</span> ${agent} <span class="chip">AI</span>`
-          : esc(r.account_id);
-        return `<tr><td>${i + 1}</td><td>${who}</td><td>${r.score}</td></tr>`;
-      })
-      .join("")}</tbody></table></div>`;
+    rows = await allRows((from, limit) => view<LeaderRow[]>("get_leaderboard", { from_index: from, limit }));
   } catch {
-    el.innerHTML = `<p class="muted">Couldn't reach NEAR testnet right now. Try again in a minute.</p>`;
+    rows = null;
   }
+  loaded = true;
+  renderBoard();
+  renderScoreboard();
 }
 
-function renderFooter() {
-  $("footer").innerHTML = `<p class="small muted">
+function renderBoard() {
+  const el = $("board");
+  if (!loaded) {
+    el.innerHTML = `<p class="empty">Loading the leaderboard…</p>`;
+    return;
+  }
+  if (rows === null) {
+    el.innerHTML = `<p class="empty">Couldn't reach NEAR testnet right now. Try again in a minute.</p>`;
+    return;
+  }
+  if (!rows.length) {
+    el.innerHTML = `<p class="empty">No picks yet. Be the first.</p>`;
+    return;
+  }
+  const scored = config?.has_results ?? false;
+  el.innerHTML = `<div class="table-scroll"><table>
+    <thead><tr><th style="width:56px">#</th><th>Player</th><th style="text-align:right">Points</th></tr></thead>
+    <tbody>${rows
+      .map((r, i) => {
+        const agent = agentOf(r.account_id);
+        const name = agent ? `${who(agent)}<span class="ai-tag">AI</span>` : esc(r.account_id);
+        const mine = r.account_id === me;
+        return `<tr${mine ? ' class="me"' : ""}><td class="mono">${i + 1}</td><td>${name}${mine ? ' <span class="chip">you</span>' : ""}</td><td class="pts">${scored ? r.score : "—"}</td></tr>`;
+      })
+      .join("")}</tbody></table></div>`;
+}
+
+/* ---------- footer ---------- */
+
+function renderChrome() {
+  $("brand").innerHTML = `${logoMark()}<span>The Hackathon Market</span>`;
+  ($("rules-link") as HTMLAnchorElement).href = `${REPO_URL}/blob/main/RULES.md`;
+  $("footer").innerHTML = `<p>
     Contract <a href="${EXPLORER}" target="_blank" rel="noopener">${CONTRACT_ID}</a> on NEAR testnet ·
     Project data from <a href="https://nearhunt.xyz" target="_blank" rel="noopener">NearHunt</a> (descriptions are each builder's own words) ·
-    <a href="${REPO_URL}" target="_blank" rel="noopener">Source</a> ·
-    Free points only, no money involved. Not affiliated with the NEAR Hackathon organizers.
-  </p>`;
+    <a href="${REPO_URL}" target="_blank" rel="noopener">Source on GitHub</a> ·
+    <a href="${REPO_URL}/blob/main/RULES.md" target="_blank" rel="noopener">Rules</a></p>
+    <p>Free points only. Not affiliated with the NEAR Hackathon organizers.</p>`;
+}
+
+function setAccount(account: string | null) {
+  me = account;
+  const btn = $("nav-signin");
+  btn.innerHTML = `<span>${esc(account ?? "Sign in")}</span>`;
+  btn.title = account ?? "";
+  renderBoard();
 }
 
 async function start() {
-  renderFooter();
-  const [data, config] = await Promise.all([loadData(), view<Config>("get_config").catch(() => null)]);
-  renderStatus(config);
-  setInterval(() => renderStatus(config), 30_000);
+  renderChrome();
+  renderScoreboard();
+  setInterval(renderScoreboard, 1000);
+  const [data, cfg] = await Promise.all([loadData(), view<Config>("get_config").catch(() => null)]);
+  config = cfg;
+  renderStats(data);
+  renderStrip(data);
   renderAgents(data);
+  renderConsensus(data);
   mountSearch(data);
-  mountPicker($("picker"), data, renderBoard);
-  await renderBoard();
+  mountPicker($("picker"), data, { onSubmitted: loadRows, onAccount: setAccount });
+  await loadRows();
+  setInterval(loadRows, 60_000);
 }
 
 start();

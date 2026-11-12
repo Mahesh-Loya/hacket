@@ -3,50 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Five AI agents and every builder predict the NEAR Hackathon winners. Free points, picks lock when judging starts." />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>" />
+    <meta name="description" content="Five AI judges predicted the NEAR Hackathon winners. Make your own picks for free and see who calls it: humans or AI." />
+    <meta name="theme-color" content="#0a0a0b" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='2.5' y='2.5' width='19' height='19' rx='5' fill='%230a0a0b' stroke='%23ededef' stroke-width='1.5'/%3E%3Cpath d='M7 15l3-3 3 2 4-6' stroke='%23ededef' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <title>The Hackathon Market</title>
   </head>
   <body>
-    <header class="hero">
-      <div class="wrap">
-        <p class="eyebrow">NEAR Hackathon 2026 · humans vs AI</p>
-        <h1>Can AI predict who wins this hackathon?</h1>
-        <p class="lede">
-          Five AI agents read every entry and locked their picks on NEAR. Make yours, free.
-          When the judges announce winners, one leaderboard shows who called it.
-        </p>
-        <p id="status" class="status">Loading…</p>
+    <nav class="nav">
+      <div class="wrap nav-in">
+        <a class="brand" href="#top" id="brand">The Hackathon Market</a>
+        <div class="nav-links">
+          <a href="#agents-sec">Agents</a>
+          <a href="#consensus-sec">Consensus</a>
+          <a href="#picks-sec">Picks</a>
+          <a href="#board-sec">Leaderboard</a>
+          <a id="rules-link" target="_blank" rel="noopener">Rules</a>
+        </div>
+        <span class="sp"></span>
+        <span class="chip mono">testnet</span>
+        <a class="btn" id="nav-signin" href="#picks-sec">Sign in</a>
       </div>
+    </nav>
+
+    <header class="wrap hero" id="top">
+      <div>
+        <p class="eyebrow">NEAR Hackathon 2026 · free prediction game</p>
+        <h1>Five AI judges made their calls. <em>Can you beat them?</em></h1>
+        <p class="lead">
+          Our agents read every entry and picked the top 3 in every track. Make your own picks before judging starts.
+          Every pick is saved on NEAR, so nobody can change it later.
+        </p>
+        <div class="row">
+          <a class="btn pri" href="#picks-sec">Make your picks →</a>
+          <a class="btn" href="#agents-sec">See the agents</a>
+        </div>
+        <div class="stats" id="hero-stats"></div>
+      </div>
+      <aside class="board" id="scoreboard" aria-label="Humans versus AI scoreboard"></aside>
     </header>
 
+    <div class="strip" id="strip" aria-label="Where the agents agree"></div>
+
     <main class="wrap">
-      <section aria-labelledby="agents-h">
-        <h2 id="agents-h">Meet the agents</h2>
-        <div id="agents" class="agent-grid"></div>
+      <section id="agents-sec" aria-labelledby="agents-h">
+        <div class="sh">
+          <h2 id="agents-h">The judges</h2>
+          <p>Each agent looks at every project through one lens. They disagree a lot, and that's the point.</p>
+        </div>
+        <div id="agents" class="agents"></div>
       </section>
 
-      <section aria-labelledby="find-h">
-        <h2 id="find-h">Find your project</h2>
-        <p class="hint">See what each agent thinks of it, and whether they picked it.</p>
-        <input id="search" type="search" placeholder="Type a project name…" autocomplete="off" />
+      <section id="consensus-sec" aria-labelledby="consensus-h">
+        <div class="sh">
+          <h2 id="consensus-h">Where they agree</h2>
+          <p>Each agent's #1 pick per category. A green dot means at least 3 of the 5 agents chose the same project.</p>
+        </div>
+        <div id="consensus"></div>
+      </section>
+
+      <section id="find-sec" aria-labelledby="find-h">
+        <div class="sh">
+          <h2 id="find-h">Find your project</h2>
+          <p>See how each judge ranks it, and why.</p>
+        </div>
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" /><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+          <input id="search" type="search" placeholder="Type a project name…" autocomplete="off" aria-label="Search projects" />
+        </div>
         <ul id="matches" class="matches"></ul>
         <div id="detail"></div>
       </section>
 
-      <section aria-labelledby="picks-h">
-        <h2 id="picks-h">Make your picks</h2>
+      <section id="picks-sec" aria-labelledby="picks-h">
+        <div class="sh">
+          <h2 id="picks-h">Make your picks</h2>
+          <p>Pick the top 3 in any tracks you like, plus the grand prize. You can change them until the lock.</p>
+        </div>
         <div id="picker"></div>
       </section>
 
-      <section aria-labelledby="board-h">
-        <h2 id="board-h">Leaderboard</h2>
-        <p class="hint">Scores appear after the official results. 3 points for the exact place, 1 point for a winner elsewhere in your top 3, 5 points for the grand prize.</p>
+      <section id="board-sec" aria-labelledby="board-h">
+        <div class="sh">
+          <h2 id="board-h">Leaderboard</h2>
+          <p>3 points for the exact place, 1 for a winner elsewhere in your top 3, 5 for the grand prize. Scores appear after the official results.</p>
+        </div>
         <div id="board"></div>
       </section>
     </main>
 
-    <footer class="wrap footer" id="footer"></footer>
+    <footer class="footer"><div class="wrap" id="footer"></div></footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

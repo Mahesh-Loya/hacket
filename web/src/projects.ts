@@ -21,12 +21,12 @@ export const TRACKS: Record<string, string> = {
   grand: "Grand Prize",
 };
 
-export const AGENTS: Record<string, { emoji: string; question: string }> = {
-  screener: { emoji: "🔍", question: "Will a judge be able to run it?" },
-  mechanist: { emoji: "⚙️", question: "Are the rules clever?" },
-  builder: { emoji: "🧱", question: "How deep does it go on NEAR?" },
-  hype: { emoji: "📣", question: "What does the crowd love?" },
-  contrarian: { emoji: "🦔", question: "Who is underrated?" },
+export const AGENTS: Record<string, { question: string; looks: string; color: string }> = {
+  screener: { question: "Will a judge be able to run it?", looks: "repo · README · demo", color: "#5ee0ff" },
+  mechanist: { question: "Are the rules clever?", looks: "game & market design", color: "#a78bfa" },
+  builder: { question: "How deep does it go on NEAR?", looks: "contracts · Intents · mainnet", color: "#fbbf24" },
+  hype: { question: "What does the crowd love?", looks: "votes · comments", color: "#f472b6" },
+  contrarian: { question: "Who is underrated?", looks: "quality minus popularity", color: "#a3e635" },
 };
 
 export async function loadData(): Promise<Data> {
