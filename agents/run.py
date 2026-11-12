@@ -21,12 +21,12 @@ DATA = pathlib.Path("data")
 
 def build_facts(projects: list[dict], refresh: bool, use_llm: bool) -> list[dict]:
     facts_path = DATA / "facts.json"
-    if not refresh and facts_path.exists():
+    if not refresh and not use_llm and facts_path.exists():
         cached = {f["id"]: f for f in json.loads(facts_path.read_text(encoding="utf-8"))}
         if all(p["submission_id"] in cached for p in projects):
             return [cached[p["submission_id"]] for p in projects]
 
-    if refresh:
+    if refresh or use_llm:
         with ThreadPoolExecutor(max_workers=8) as pool:
             readmes = list(pool.map(lambda p: fetch_readme(p.get("repository_url")), projects))
     else:
