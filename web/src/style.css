@@ -263,3 +263,13 @@ tr.detail-row .result { margin: 0; background: var(--bg); }
 }
 .rank { white-space: nowrap; }
 @media (max-width: 760px) { .rrow { grid-template-columns: 96px 1fr auto; } }
+
+/* The entries list scrolls inside its own box */
+.table-scroll.rankings { max-height: 470px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+.table-scroll.rankings::-webkit-scrollbar { width: 8px; height: 8px; }
+.table-scroll.rankings::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
+.table-scroll.rankings::-webkit-scrollbar-track { background: transparent; }
+.rankings thead th { position: sticky; top: 0; z-index: 1; background: var(--panel); }
+.rank-count { margin: 10px 2px 0; }
+td.none { text-align: center; padding: 28px; color: var(--muted); }
+@media (max-width: 760px) { .table-scroll.rankings { max-height: 420px; } }

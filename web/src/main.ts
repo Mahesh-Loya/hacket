@@ -151,7 +151,7 @@ function renderConsensus(data: Data, showAll = false) {
 
 /* ---------- project rankings ---------- */
 
-const PAGE = 20;
+const PAGE = 30; // rows drawn per batch; the box shows about 7 at a time
 
 function detailHtml(row: RankingRow, data: Data) {
   const p = data.byId.get(row.id)!;
@@ -189,15 +189,25 @@ function mountRankings(data: Data) {
   let limit = PAGE;
   let open: string | null = null;
 
+  // Built once; only the rows change, so the box keeps its scroll position.
+  el.innerHTML = `<div class="table-scroll rankings" tabindex="0" aria-label="All entries, ranked"><table>
+      <thead><tr><th>#</th><th>Project</th>${names.map((n) => `<th title="${esc(n)}'s rank">${agentIcon(n, 22)}</th>`).join("")}<th>Picked by</th></tr></thead>
+      <tbody></tbody></table></div><p class="small dim rank-count"></p>`;
+  const box = el.querySelector<HTMLElement>(".rankings")!;
+  const tbody = el.querySelector("tbody")!;
+  const count = el.querySelector(".rank-count")!;
+
   function render() {
     const found = filterRankings(all, input.value, data.byId);
     if (found.length === 1) open = found[0].id;
-    const shown = found.slice(0, limit);
+    count.textContent =
+      found.length === all.length ? `${all.length} entries · scroll the list to see more` : `${found.length} of ${all.length} entries match`;
     if (!found.length) {
-      el.innerHTML = `<p class="empty">No project matches “${esc(input.value.trim())}”.</p>`;
+      tbody.innerHTML = `<tr><td colspan="${names.length + 3}" class="none">No project matches “${esc(input.value.trim())}”.</td></tr>`;
       return;
     }
-    const body = shown
+    tbody.innerHTML = found
+      .slice(0, limit)
       .map((r) => {
         const p = data.byId.get(r.id)!;
         const isOpen = r.id === open;
@@ -213,26 +223,28 @@ function mountRankings(data: Data) {
           </tr>${isOpen ? `<tr class="detail-row"><td colspan="${names.length + 3}">${detailHtml(r, data)}</td></tr>` : ""}`;
       })
       .join("");
-    const more =
-      found.length > limit
-        ? `<button class="btn sm more" id="rank-more">Show ${Math.min(PAGE, found.length - limit)} more <span class="dim">· ${shown.length} of ${found.length}</span></button>`
-        : `<p class="small dim more">${found.length === all.length ? `All ${all.length} projects shown.` : `${found.length} of ${all.length} projects match.`}</p>`;
-    el.innerHTML = `<div class="table-scroll rankings"><table>
-        <thead><tr><th>#</th><th>Project</th>${names.map((n) => `<th title="${esc(n)}'s rank">${agentIcon(n, 22)}</th>`).join("")}<th>Picked by</th></tr></thead>
-        <tbody>${body}</tbody></table></div>${more}`;
+  }
+
+  function reset() {
+    limit = PAGE;
+    box.scrollTop = 0;
+    render();
   }
 
   input.addEventListener("input", () => {
-    limit = PAGE;
     open = null;
-    render();
+    reset();
   });
-  el.addEventListener("click", (e) => {
-    const target = e.target as HTMLElement;
-    if (target.closest("#rank-more")) {
+  // Load the next batch as the list nears its bottom.
+  box.addEventListener("scroll", () => {
+    const found = filterRankings(all, input.value, data.byId).length;
+    if (limit < found && box.scrollTop + box.clientHeight > box.scrollHeight - 240) {
       limit += PAGE;
-      return render();
+      render();
     }
+  });
+  tbody.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
     if (target.closest(".detail-row, a")) return;
     const id = target.closest<HTMLElement>("tr.prow")?.dataset.id;
     if (!id) return;
@@ -244,9 +256,8 @@ function mountRankings(data: Data) {
     const id = (e.target as HTMLElement).closest<HTMLElement>("[data-show]")?.dataset.show;
     if (!id) return;
     input.value = data.byId.get(id)?.name ?? "";
-    limit = PAGE;
     open = id;
-    render();
+    reset();
   });
   render();
 }
