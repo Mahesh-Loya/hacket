@@ -10,8 +10,8 @@ const SHAPES: Record<string, string> = {
 };
 
 export function agentIcon(name: string, size = 36): string {
-  const color = AGENTS[name]?.color ?? "#8b8b93";
-  const shape = (SHAPES[name] ?? "").replaceAll('"C"', `"${color}"`);
+  const color = Object.hasOwn(AGENTS, name) ? AGENTS[name].color : "#8b8b93";
+  const shape = (Object.hasOwn(SHAPES, name) ? SHAPES[name] : "").replaceAll('"C"', `"${color}"`);
   return `<svg class="agent-icon" width="${size}" height="${size}" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="${color}" fill-opacity=".1"/>${shape}</svg>`;
 }
 

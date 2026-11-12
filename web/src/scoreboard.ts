@@ -21,15 +21,20 @@ export function summarize(rows: LeaderRow[] | null, hasResults: boolean): Summar
   return { bestHuman, bestAi, humans: humans.length, agents: agents.length, leader };
 }
 
-/** Reads the whole leaderboard page by page, stopping at the first short page. */
+/** Reads the whole leaderboard page by page, stopping at the first short page.
+ *  A player who saves while we read can shift between pages, so each account is kept once. */
 export async function allRows(
   fetchPage: (from: number, limit: number) => Promise<LeaderRow[]>,
   pageSize = 100,
 ): Promise<LeaderRow[]> {
   const rows: LeaderRow[] = [];
+  const seen = new Set<string>();
   for (let from = 0; ; from += pageSize) {
     const page = await fetchPage(from, pageSize);
-    rows.push(...page);
+    for (const row of page) {
+      if (!seen.has(row.account_id)) rows.push(row);
+      seen.add(row.account_id);
+    }
     if (page.length < pageSize) return rows;
   }
 }
@@ -42,7 +47,7 @@ export function countdown(msLeft: number): { d: string; h: string; m: string; s:
 
 /** Bar length for "how high this agent ranks it": 1 for #1, 0 when not ranked at all. */
 export function rankBarWidth(rank: number | undefined, total: number): number {
-  return rank ? 1 - (rank - 1) / total : 0;
+  return rank ? Math.max(0, 1 - (rank - 1) / total) : 0;
 }
 
 type View = <T>(method: string, args?: object) => Promise<T>;
@@ -66,4 +71,9 @@ export function onChange<T>(fn: (value: T) => void): (value: T) => void {
     last = value;
     fn(value);
   };
+}
+
+/** Leaderboard places: equal scores share a place (1, 1, 3). No places until results exist. */
+export function places(rows: LeaderRow[], hasResults: boolean): (number | null)[] {
+  return rows.map((row) => (hasResults ? rows.findIndex((r) => r.score === row.score) + 1 : null));
 }

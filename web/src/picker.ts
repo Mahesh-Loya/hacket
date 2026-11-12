@@ -5,7 +5,7 @@ import { esc } from "./esc";
 import { agentIcon } from "./icons";
 import { buildPicks, pickOptions } from "./picks";
 import { onChange } from "./scoreboard";
-import { AGENTS, TRACKS, type Data } from "./projects";
+import { AGENTS, trackName, type Data } from "./projects";
 import type * as WalletModule from "./wallet";
 
 let wallet: typeof WalletModule;
@@ -29,9 +29,9 @@ function renderForm(el: HTMLElement, data: Data, current: Entry | null, locked: 
     const chosen = byCat.get(cat) ?? [];
     const slots = Array.from({ length: slotsFor(cat) }, (_, i) => {
       const place = cat === "grand" ? "Winner" : PLACES[i];
-      return `<label class="slot">${cat === "grand" ? "" : `<span>${place}</span>`}<select data-cat="${cat}" aria-label="${esc(TRACKS[cat])}, ${place}"${dis}>${options(cat, data, chosen[i] ?? "")}</select></label>`;
+      return `<label class="slot">${cat === "grand" ? "" : `<span>${place}</span>`}<select data-cat="${cat}" aria-label="${esc(trackName(cat))}, ${place}"${dis}>${options(cat, data, chosen[i] ?? "")}</select></label>`;
     }).join("");
-    return `<div class="cat-card${cat === "grand" ? " grand" : ""}"><div class="t">${esc(TRACKS[cat])}</div>${slots}</div>`;
+    return `<div class="cat-card${cat === "grand" ? " grand" : ""}"><div class="t">${esc(trackName(cat))}</div>${slots}</div>`;
   }).join("");
   const copy = Object.keys(AGENTS)
     .map((name) => `<button class="btn sm" data-copy="${name}"${dis}>${agentIcon(name, 20)}<span style="text-transform:capitalize">${name}</span></button>`)
@@ -99,14 +99,18 @@ export function mountPicker(
         setMsg(el, "wait", `Copied ${b.dataset.copy}'s picks. Change any you like, then save.`);
       }),
     );
-    el.querySelector("#submit")?.addEventListener("click", async () => {
+    el.querySelector("#submit")?.addEventListener("click", async (e) => {
+      const button = e.currentTarget as HTMLButtonElement;
       try {
         const picks = buildPicks(readSelection(el));
+        button.disabled = true; // one transaction per click, even if the wallet is slow
         setMsg(el, "wait", "Waiting for your wallet…");
         await wallet.submitPicks(picks);
-        setMsg(el, "ok", "Saved on NEAR testnet.");
         hooks.onSubmitted();
+        await render(); // shows the saved picks and switches the button to "Update my picks"
+        setMsg(el, "ok", "Saved on NEAR testnet.");
       } catch (e) {
+        button.disabled = false;
         setMsg(el, "err", e instanceof Error ? e.message : "Something went wrong. Try again.");
       }
     });

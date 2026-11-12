@@ -5,8 +5,8 @@ import { consensusRows, featuredRows, stripItems, type ConsensusRow } from "./co
 import { esc } from "./esc";
 import { agentIcon, logoMark } from "./icons";
 import { mountPicker } from "./picker";
-import { AGENTS, TRACKS, label, loadData, rankMap, safeUrl, type Data } from "./projects";
-import { countdown, rankBarWidth, readBoard, summarize, type Summary } from "./scoreboard";
+import { AGENTS, TRACKS, label, loadData, rankMap, safeUrl, trackName, type Data } from "./projects";
+import { countdown, places, rankBarWidth, readBoard, summarize, type Summary } from "./scoreboard";
 
 const $ = (id: string) => document.getElementById(id)!;
 
@@ -17,7 +17,7 @@ let loaded = false;
 
 function agentOf(accountId: string): string | null {
   const name = accountId.split(".")[0];
-  return name in AGENTS && accountId === `${name}.hackket.testnet` ? name : null;
+  return Object.hasOwn(AGENTS, name) && accountId === `${name}.hackket.testnet` ? name : null;
 }
 
 function who(name: string) {
@@ -92,15 +92,16 @@ function tick() {
 /* ---------- agreement strip ---------- */
 
 function renderStrip(data: Data) {
+  const total = Object.keys(data.agents).length;
   const items = stripItems(data.agents).map((it) => {
     if (it.kind === "category") {
       const what = it.leaders.length
-        ? `<b>${it.leaders.map((id) => esc(label(id, data.byId))).join(" · ")}</b> · ${it.count}/5 agents agree`
+        ? `<b>${it.leaders.map((id) => esc(label(id, data.byId))).join(" · ")}</b> · ${it.count}/${total} agents agree${it.leaders.length > 1 ? " on each" : ""}`
         : "no two agents agree";
       return `<span class="strip-item">${shortCat(it.category)} #1 · ${what}</span>`;
     }
-    const dots = `<span class="on">${"●".repeat(it.agents)}</span><span class="off">${"●".repeat(Math.max(0, 5 - it.agents))}</span>`;
-    return `<span class="strip-item"><b>${esc(label(it.id, data.byId))}</b> · picked by ${it.agents}/5 agents<span class="dots" aria-hidden="true">${dots}</span></span>`;
+    const dots = `<span class="on">${"●".repeat(it.agents)}</span><span class="off">${"●".repeat(Math.max(0, total - it.agents))}</span>`;
+    return `<span class="strip-item"><b>${esc(label(it.id, data.byId))}</b> · picked by ${it.agents}/${total} agents<span class="dots" aria-hidden="true">${dots}</span></span>`;
   });
   // The list is drawn twice so the scroll can loop without a gap; the copy is hidden from screen readers.
   $("strip").innerHTML = `<div class="strip-track"><div>${items.join("")}</div><div aria-hidden="true">${items.join("")}</div></div>`;
@@ -136,12 +137,12 @@ function renderConsensus(data: Data, showAll = false) {
   };
   const cons = (r: ConsensusRow) =>
     r.leaders.length
-      ? `${r.leaders.map((id) => esc(label(id, data.byId))).join(" · ")} <span class="dim">${r.count}/5${r.leaders.length > 1 ? " each" : ""}</span>`
+      ? `${r.leaders.map((id) => esc(label(id, data.byId))).join(" · ")} <span class="dim">${r.count}/${Object.keys(data.agents).length}${r.leaders.length > 1 ? " each" : ""}</span>`
       : `<span class="dim">split</span>`;
   $("consensus").innerHTML = `<div class="table-scroll consensus"><table>
       <thead><tr><th>Category</th>${names.map((n) => `<th>${who(n)}</th>`).join("")}<th>Consensus</th></tr></thead>
       <tbody>${shown
-        .map((r) => `<tr><td class="cat">${esc(TRACKS[r.category])}</td>${names.map((n) => cell(r, n)).join("")}<td class="cons">${cons(r)}</td></tr>`)
+        .map((r) => `<tr><td class="cat">${esc(trackName(r.category))}</td>${names.map((n) => cell(r, n)).join("")}<td class="cons">${cons(r)}</td></tr>`)
         .join("")}</tbody></table></div>
     <button class="btn sm more" id="more">${showAll ? "Show fewer" : `Show all ${all.length}`}</button>`;
   $("more").addEventListener("click", () => renderConsensus(data, !showAll));
@@ -165,7 +166,7 @@ function renderDetail(id: string, data: Data, ranks: Record<string, Map<string, 
       const rank = ranks[name]?.get(id);
       const picked = (out?.picks ?? [])
         .filter((c) => c.ids.includes(id))
-        .map((c) => `<span class="chip">Picked ${esc(TRACKS[c.category] ?? c.category)} #${c.ids.indexOf(id) + 1}</span>`)
+        .map((c) => `<span class="chip">Picked ${esc(trackName(c.category))} #${c.ids.indexOf(id) + 1}</span>`)
         .join("");
       const width = Math.round(rankBarWidth(rank, total) * 100);
       return `<div class="rrow">
@@ -178,7 +179,7 @@ function renderDetail(id: string, data: Data, ranks: Record<string, Map<string, 
     .join("");
   $("detail").innerHTML = `<article class="result">
     <div class="result-h"><h3><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(p.name)} ↗</a></h3>
-      <span class="chip">${p.tracks.map((t) => esc(TRACKS[t] ?? t)).join(" · ")}</span></div>
+      <span class="chip">${p.tracks.map((t) => esc(trackName(t))).join(" · ")}</span></div>
     ${p.summary ? `<p class="says">Builder says: “${esc(p.summary)}”</p>` : ""}
     ${rowsHtml}
   </article>`;
@@ -197,7 +198,7 @@ function mountSearch(data: Data) {
     const q = input.value.trim().toLowerCase();
     const hits = q ? data.projects.filter((p) => p.name.toLowerCase().includes(q)).slice(0, 8) : [];
     list.innerHTML = hits
-      .map((p) => `<li><button data-id="${esc(p.id)}">${esc(p.name)}<span>${p.tracks.map((t) => esc(TRACKS[t] ?? t)).join(" · ")}</span></button></li>`)
+      .map((p) => `<li><button data-id="${esc(p.id)}">${esc(p.name)}<span>${p.tracks.map((t) => esc(trackName(t))).join(" · ")}</span></button></li>`)
       .join("");
   });
   input.addEventListener("keydown", (e) => {
@@ -217,8 +218,12 @@ function mountSearch(data: Data) {
 
 /* ---------- leaderboard ---------- */
 
+let reading = false;
+
 async function loadRows() {
-  const board = await readBoard(view);
+  if (reading) return; // a slow RPC must not stack up overlapping reads
+  reading = true;
+  const board = await readBoard(view).finally(() => (reading = false));
   rows = board.rows;
   config = board.config ?? config;
   loaded = true;
@@ -241,6 +246,7 @@ function renderBoard() {
     return;
   }
   const scored = config?.has_results ?? false;
+  const place = places(rows, scored);
   el.innerHTML = `<div class="table-scroll"><table>
     <thead><tr><th style="width:56px">#</th><th>Player</th><th style="text-align:right">Points</th></tr></thead>
     <tbody>${rows
@@ -248,7 +254,7 @@ function renderBoard() {
         const agent = agentOf(r.account_id);
         const name = agent ? `${who(agent)}<span class="ai-tag">AI</span>` : esc(r.account_id);
         const mine = r.account_id === me;
-        return `<tr${mine ? ' class="me"' : ""}><td class="mono">${i + 1}</td><td>${name}${mine ? ' <span class="chip">you</span>' : ""}</td><td class="pts">${scored ? r.score : "—"}</td></tr>`;
+        return `<tr${mine ? ' class="me"' : ""}><td class="mono">${place[i] ?? "—"}</td><td>${name}${mine ? ' <span class="chip">you</span>' : ""}</td><td class="pts">${scored ? r.score : "—"}</td></tr>`;
       })
       .join("")}</tbody></table></div>`;
 }

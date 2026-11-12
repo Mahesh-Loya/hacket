@@ -54,3 +54,11 @@ describe("agent identity", () => {
     expect(Object.keys(AGENTS)).toEqual(["screener", "mechanist", "builder", "hype", "contrarian"]);
   });
 });
+
+describe("trackName", () => {
+  it("names known tracks and passes odd ones through safely", async () => {
+    const { trackName } = await import("./projects");
+    expect(trackName("defi")).toBe("Unstoppable DeFi");
+    expect(trackName("constructor")).toBe("constructor");
+  });
+});

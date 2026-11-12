@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { LeaderRow } from "./chain";
-import { allRows, countdown, onChange, rankBarWidth, readBoard, summarize } from "./scoreboard";
+import { allRows, countdown, onChange, places, rankBarWidth, readBoard, summarize } from "./scoreboard";
 
 const r = (account_id: string, score: number, is_agent: boolean): LeaderRow => ({ account_id, score, is_agent, updated_ns: "0" });
 
@@ -86,5 +86,23 @@ describe("onChange", () => {
     const f = onChange<string | null>((v) => seen.push(v));
     f(null); f(null); f("a.testnet"); f("a.testnet"); f(null);
     expect(seen).toEqual([null, "a.testnet", null]);
+  });
+});
+
+describe("small fixes", () => {
+  it("clamps the bar when a rank is beyond the total", () => {
+    expect(rankBarWidth(700, 678)).toBe(0);
+  });
+
+  it("counts a player once even if they move between pages", async () => {
+    const pages = [[r("a.testnet", 0, false), r("b.testnet", 0, false)], [r("b.testnet", 0, false)]];
+    const got = await allRows(async (from) => pages[from / 2] ?? [], 2);
+    expect(got.map((x) => x.account_id)).toEqual(["a.testnet", "b.testnet"]);
+  });
+
+  it("shares a place between equal scores, and has no places before results", () => {
+    const rows = [r("a.testnet", 9, false), r("b.testnet", 9, true), r("c.testnet", 4, false)];
+    expect(places(rows, true)).toEqual([1, 1, 3]);
+    expect(places(rows, false)).toEqual([null, null, null]);
   });
 });

@@ -21,6 +21,11 @@ export const TRACKS: Record<string, string> = {
   grand: "Grand Prize",
 };
 
+/** Track display name; unknown names (even "constructor") pass through as-is. */
+export function trackName(track: string): string {
+  return Object.hasOwn(TRACKS, track) ? TRACKS[track] : track;
+}
+
 export const AGENTS: Record<string, { question: string; looks: string; color: string }> = {
   screener: { question: "Will a judge be able to run it?", looks: "repo · README · demo", color: "#5ee0ff" },
   mechanist: { question: "Are the rules clever?", looks: "game & market design", color: "#a78bfa" },
