@@ -1,7 +1,7 @@
 import { view, type Entry } from "./chain";
 import { LOCK_AT_MS } from "./config";
 import { esc } from "./esc";
-import { buildPicks } from "./picks";
+import { buildPicks, pickOptions } from "./picks";
 import { AGENTS, TRACKS, type Data } from "./projects";
 import type * as WalletModule from "./wallet";
 
@@ -12,11 +12,8 @@ function slotsFor(category: string) {
 }
 
 function options(category: string, data: Data, chosen: string) {
-  const pool = data.projects
-    .filter((p) => category === "grand" || p.tracks.includes(category))
-    .sort((a, b) => a.name.localeCompare(b.name));
-  return ['<option value="">—</option>']
-    .concat(pool.map((p) => `<option value="${esc(p.id)}"${p.id === chosen ? " selected" : ""}>${esc(p.name)}</option>`))
+  return pickOptions(category, data.projects, chosen)
+    .map((o) => `<option value="${esc(o.value)}"${o.value === chosen ? " selected" : ""}>${esc(o.text)}</option>`)
     .join("");
 }
 

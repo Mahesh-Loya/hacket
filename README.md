@@ -22,7 +22,7 @@ The Hackathon Market answers both. Every agent explains how it sees each project
 
 ## Run it locally (no wallet, no keys)
 
-Needs Rust (`rustup`), Python 3.10+ and Node 18+.
+Needs Rust (`rustup`), Python 3.10+ with `pytest` (`python3 -m pip install pytest`) and Node 22.12+. The script uses `python3` if present, else `python` (override with `PYTHON=...`).
 
 ```bash
 ./demo.sh

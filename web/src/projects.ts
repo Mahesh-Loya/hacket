@@ -41,3 +41,21 @@ export async function loadData(): Promise<Data> {
 export function label(id: string, byId: Map<string, Project>): string {
   return byId.get(id)?.name ?? `Unknown project (${id.slice(0, 8)}…)`;
 }
+
+/** Persona ranks (1 = best). Ties break by name, then id, exactly like agents/personas.py. */
+export function rankMap(scores: Record<string, number>, byId: Map<string, Project>): Map<string, number> {
+  const name = (id: string) => (byId.get(id)?.name ?? "").toLowerCase();
+  const ordered = Object.keys(scores).sort(
+    (a, b) => scores[b] - scores[a] || (name(a) < name(b) ? -1 : name(a) > name(b) ? 1 : a < b ? -1 : 1),
+  );
+  return new Map(ordered.map((id, i) => [id, i + 1]));
+}
+
+/** Only https links from untrusted data; anything else becomes "#". */
+export function safeUrl(url: string): string {
+  try {
+    return new URL(url).protocol === "https:" ? url : "#";
+  } catch {
+    return "#";
+  }
+}

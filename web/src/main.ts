@@ -1,7 +1,7 @@
 import "./style.css";
 import { view, type Config, type LeaderRow } from "./chain";
 import { CONTRACT_ID, EXPLORER, LOCK_AT_MS, REPO_URL } from "./config";
-import { AGENTS, TRACKS, label, loadData, type Data } from "./projects";
+import { AGENTS, TRACKS, label, loadData, rankMap, safeUrl, type Data } from "./projects";
 import { esc } from "./esc";
 import { mountPicker } from "./picker";
 
@@ -44,8 +44,7 @@ function renderAgents(data: Data) {
 function ranksFor(data: Data): Record<string, Map<string, number>> {
   const ranks: Record<string, Map<string, number>> = {};
   for (const [name, out] of Object.entries(data.agents)) {
-    const ordered = Object.entries(out.scores).sort((a, b) => b[1] - a[1]);
-    ranks[name] = new Map(ordered.map(([id], i) => [id, i + 1]));
+    ranks[name] = rankMap(out.scores, data.byId);
   }
   return ranks;
 }
@@ -70,7 +69,7 @@ function renderDetail(id: string, data: Data, ranks: Record<string, Map<string, 
     })
     .join("");
   $("detail").innerHTML = `<article class="card">
-    <h3><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)}</a></h3>
+    <h3><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(p.name)}</a></h3>
     <p class="muted small">${p.tracks.map((t) => esc(TRACKS[t] ?? t)).join(" · ")}</p>
     ${p.summary ? `<p class="small">Builder says: “${esc(p.summary)}”</p>` : ""}
     <div class="table-scroll"><table><thead><tr><th>Agent</th><th>Ranks it</th><th>Picked?</th></tr></thead><tbody>${rows}</tbody></table></div>
