@@ -1,0 +1,8 @@
+target/
+node_modules/
+dist/
+.env
+__pycache__/
+.venv/
+.superpowers/
+.vercel/
