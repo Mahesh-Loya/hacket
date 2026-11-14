@@ -1,0 +1,12 @@
+contract/
+agents/
+tests/
+docs/
+scripts/
+.superpowers/
+**/node_modules/
+**/target/
+**/__pycache__/
+web/dist/
+web/public/data/
+.env
