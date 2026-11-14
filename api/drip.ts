@@ -1,7 +1,9 @@
 // Sends 0.1 testnet NEAR (free play money) to a new player's nearly empty testnet account,
 // so they can save picks without visiting a faucet. Paid from hackket-tap.testnet.
-import { Account, KeyPairSigner, providers } from "near-api-js";
-import { DRIP_AMOUNT, dripDecision } from "../web/src/drip-rules";
+import nearApi from "near-api-js"; // CommonJS package: take its exports from the default import
+import { DRIP_AMOUNT, dripDecision } from "../web/src/drip-rules.js";
+
+const { Account, KeyPairSigner, providers } = nearApi;
 
 const RPC = "https://rpc.testnet.near.org";
 const TAP = "hackket-tap.testnet";
