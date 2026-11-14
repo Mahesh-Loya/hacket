@@ -1,6 +1,6 @@
 # The Hackathon Market
 
-**Can AI predict who wins the NEAR Hackathon?** Five AI agents read every one of the ~680 entries and put their predicted top 3 for every track on NEAR. Builders make their own picks for free. Picks lock when judging starts (16 Nov 2026 00:00 UTC). When the winners are announced, one leaderboard shows whether humans or AI called it.
+**Can AI predict who wins the NEAR Hackathon?** Five judge agents (rule-based personas) read all ~1,200 entries and put their predicted top 3 for every track on NEAR. Builders make their own picks for free. Picks lock when judging starts (16 Nov 2026 00:00 UTC). When the winners are announced, one leaderboard shows whether humans or AI called it.
 
 - **Live site:** <https://hackathon-market-xi.vercel.app>
 - **Contract:** [`market.hackket.testnet`](https://testnet.nearblocks.io/address/market.hackket.testnet) on NEAR testnet
@@ -8,14 +8,14 @@
 
 ## The problem
 
-Around 680 projects entered the NEAR Hackathon, and judging is partly done by AI (Claude Code and Codex screen the repos first). Builders want to know two things: how their project looks to a judge, and who is likely to win. Nobody answers either question in public, with predictions that can't be edited afterwards.
+Around 1,200 projects entered the NEAR Hackathon, and judging is partly done by AI (Claude Code and Codex screen the repos first). Builders want to know two things: how their project looks to a judge, and who is likely to win. Nobody answers either question in public, with predictions that can't be edited afterwards.
 
 The Hackathon Market answers both. Every agent explains how it sees each project in one line. Every prediction is stored on NEAR before the lock, so nobody can change a guess once results come out.
 
 ## Try it (live, ~2 minutes)
 
 1. Open the live site. **See:** the Humans vs AI scoreboard with a countdown to the lock, a strip of where the agents agree, five judge cards and a table of each agent's #1 pick per track.
-2. Under **Where does your project stand?**, scroll the list of every entry (ordered by the average of the 5 judges' ranks), or type a project name (e.g. `Nims`) and click it. **See:** a bar per agent showing where it ranks the project out of ~680, whether it picked it, and why.
+2. Under **Where does your project stand?**, scroll the list of every entry (ordered by the average of the 5 judges' ranks), or type a project name (e.g. `Nims`) and click it. **See:** a bar per agent showing where it ranks the project out of ~1,200, whether it picked it, and why.
 3. Under **Make your picks**, click **Sign in to pick** and choose **Meteor Wallet**, which can create a free testnet account for you (new accounts start empty: get free testnet NEAR from the [NEAR faucet](https://docs.near.org/getting-started/faucet) first) (MyNearWallet no longer creates new accounts, but existing testnet accounts can still sign in with it). **See:** a form with 14 categories.
 4. Under **Start from an agent's picks**, click an agent (e.g. **Mechanist**) to copy its picks, change any you disagree with, and click **Lock in my picks**. Approve in the wallet. **See:** your account appear on the leaderboard.
 5. After the official results (by 18 Nov), **see:** points on the leaderboard (3 for the exact place, 1 for elsewhere in your top 3, 5 for the grand prize).
@@ -28,7 +28,7 @@ Needs Rust (`rustup`), Python 3.10+ with `pytest` (`python3 -m pip install pytes
 ./demo.sh
 ```
 
-**See:** contract tests pass, agent tests pass, the 5 agents score the committed snapshot of 678 entries and print each one's grand prize pick, the website tests pass and it builds, and the live leaderboard is printed from testnet.
+**See:** contract tests pass, agent tests pass, the 5 agents score the committed snapshot of 1,220 entries and print each one's grand prize pick, the website tests pass and it builds, and the live leaderboard is printed from testnet.
 
 You can also run each part on its own:
 
