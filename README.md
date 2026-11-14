@@ -15,8 +15,8 @@ The Hackathon Market answers both. Every agent explains how it sees each project
 ## Try it (live, ~2 minutes)
 
 1. Open the live site. **See:** the Humans vs AI scoreboard with a countdown to the lock, a strip of where the agents agree, five judge cards and a table of each agent's #1 pick per track.
-2. Under **Where does your project stand?**, scroll the list of every entry (ordered by the average of the 5 judges' ranks), or type a project name (e.g. `Nims`) and click it. **See:** a bar per agent showing where it ranks the project out of ~1,200, whether it picked it, and why.
-3. Under **Make your picks**, click **Sign in to pick** and choose **Meteor Wallet**, which can create a free testnet account for you (new accounts start empty: get free testnet NEAR from the [NEAR faucet](https://docs.near.org/getting-started/faucet) first) (MyNearWallet no longer creates new accounts, but existing testnet accounts can still sign in with it). **See:** a form with 14 categories.
+2. Under **Where does your project stand?**, scroll the list of every entry (ordered by the average of the 5 judges' ranks), or type a project name (e.g. `Nims`) and click it. **See:** a bar per agent showing where it ranks the project out of ~1,200, whether it picked it, and why. **Share this rank on X** posts it, and the link opens the site on that project.
+3. Under **Make your picks**, click **Sign in to pick** and choose **Meteor Wallet**, which can create a free testnet account for you (new accounts start empty: type the name into **Send me play money** and the site sends 0.1 free testnet NEAR; the [NEAR faucet](https://docs.near.org/getting-started/faucet) also works) (MyNearWallet no longer creates new accounts, but existing testnet accounts can still sign in with it). **See:** a form with 14 categories.
 4. Under **Start from an agent's picks**, click an agent (e.g. **Mechanist**) to copy its picks, change any you disagree with, and click **Lock in my picks**. Approve in the wallet. **See:** your account appear on the leaderboard.
 5. After the official results (by 18 Nov), **see:** points on the leaderboard (3 for the exact place, 1 for elsewhere in your top 3, 5 for the grand prize).
 
@@ -84,6 +84,7 @@ web/ (Vite + TypeScript)  reads the contract over RPC, signs picks with NEAR Wal
 | `tests/` | Python tests |
 | `web/` | Static website (Vite + TypeScript) |
 | `data/` | Committed snapshot: `projects.json` (NearHunt), `facts.json`, `agents.json` |
+| `api/` | One Vercel function: `drip.ts` sends 0.1 free testnet NEAR to new players from `hackket-tap.testnet` |
 | `scripts/` | `deploy.sh`, `register-agents.sh`, `set-results.sh` |
 | `docs/superpowers/` | Design spec and implementation plan |
 
@@ -91,6 +92,7 @@ web/ (Vite + TypeScript)  reads the contract over RPC, signs picks with NEAR Wal
 
 - Contract: `near-sdk` 5.30 (built with `cargo-near` 0.23).
 - Agents: Python standard library only; `pytest` for tests.
+- Play-money tap: `near-api-js` 6.5 (Vercel function).
 - Web: Vite, TypeScript, `@near-wallet-selector/*` 10.1.4 (core, modal-ui, my-near-wallet, meteor-wallet), `buffer`, `vitest`.
 - Data: [NearHunt](https://nearhunt.xyz) public read-only API (project records written by `nearhunt.near`) and public GitHub READMEs.
 - **AI-written code:** most of this repository was written with Claude Code (Anthropic), directed and reviewed by the author. Commits say so in their `Co-Authored-By` line.
