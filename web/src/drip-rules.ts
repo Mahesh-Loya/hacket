@@ -5,9 +5,13 @@ export const DRIP_BELOW = 10n ** 23n; // only accounts with less than this get t
 
 const TESTNET_ACCOUNT = /^(([a-z\d]+[-_])*[a-z\d]+\.)+testnet$/;
 
+export function isTestnetAccount(accountId: string): boolean {
+  return accountId.length <= 64 && TESTNET_ACCOUNT.test(accountId);
+}
+
 /** Whether to send play money to `accountId`, given its available balance (null = account doesn't exist). */
 export function dripDecision(accountId: string, available: bigint | null): { ok: true } | { ok: false; reason: string } {
-  if (accountId.length > 64 || !TESTNET_ACCOUNT.test(accountId)) return { ok: false, reason: "That isn't a testnet account name." };
+  if (!isTestnetAccount(accountId)) return { ok: false, reason: "That isn't a testnet account name." };
   if (accountId === "hackket.testnet" || accountId.endsWith(".hackket.testnet") || accountId === "hackket-tap.testnet") {
     return { ok: false, reason: "That account belongs to the game itself." };
   }

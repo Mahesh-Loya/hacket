@@ -1,7 +1,7 @@
 // Sends 0.1 testnet NEAR (free play money) to a new player's nearly empty testnet account,
 // so they can save picks without visiting a faucet. Paid from hackket-tap.testnet.
 import nearApi from "near-api-js"; // CommonJS package: take its exports from the default import
-import { DRIP_AMOUNT, dripDecision } from "../web/src/drip-rules.js";
+import { DRIP_AMOUNT, dripDecision, isTestnetAccount } from "../web/src/drip-rules.js";
 
 const { Account, KeyPairSigner, providers } = nearApi;
 
@@ -36,6 +36,7 @@ export async function POST(request: Request): Promise<Response> {
   const body = (await request.json().catch(() => ({}))) as { account_id?: unknown };
   const accountId = typeof body.account_id === "string" ? body.account_id.trim().toLowerCase() : "";
 
+  if (!isTestnetAccount(accountId)) return fail(400, "That isn't a testnet account name.");
   let available: bigint | null;
   try {
     available = await availableBalance(accountId);

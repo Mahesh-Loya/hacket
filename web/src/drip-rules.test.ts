@@ -24,3 +24,12 @@ describe("dripDecision", () => {
     expect(dripDecision("hackket-tap.testnet", 0n)).toMatchObject({ ok: false });
   });
 });
+
+describe("isTestnetAccount", () => {
+  it("accepts testnet names and rejects anything else before asking NEAR", async () => {
+    const { isTestnetAccount } = await import("./drip-rules");
+    expect(isTestnetAccount("maheshloya.testnet")).toBe(true);
+    expect(isTestnetAccount("")).toBe(false);
+    expect(isTestnetAccount("Bad Name.testnet")).toBe(false);
+  });
+});
