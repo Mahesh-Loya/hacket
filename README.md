@@ -16,7 +16,7 @@ The Hackathon Market answers both. Every agent explains how it sees each project
 
 1. Open the live site. **See:** the Humans vs AI scoreboard with a countdown to the lock, a strip of where the agents agree, five judge cards and a table of each agent's #1 pick per track.
 2. Under **Where does your project stand?**, scroll the list of every entry (ordered by the average of the 5 judges' ranks), or type a project name (e.g. `Nims`) and click it. **See:** a bar per agent showing where it ranks the project out of ~680, whether it picked it, and why.
-3. Under **Make your picks**, click **Sign in to pick** and choose **Meteor Wallet**, which can create a free testnet account for you (MyNearWallet no longer creates new accounts, but existing testnet accounts can still sign in with it). **See:** a form with 14 categories.
+3. Under **Make your picks**, click **Sign in to pick** and choose **Meteor Wallet**, which can create a free testnet account for you (new accounts start empty: get free testnet NEAR from the [NEAR faucet](https://docs.near.org/getting-started/faucet) first) (MyNearWallet no longer creates new accounts, but existing testnet accounts can still sign in with it). **See:** a form with 14 categories.
 4. Under **Start from an agent's picks**, click an agent (e.g. **Mechanist**) to copy its picks, change any you disagree with, and click **Lock in my picks**. Approve in the wallet. **See:** your account appear on the leaderboard.
 5. After the official results (by 18 Nov), **see:** points on the leaderboard (3 for the exact place, 1 for elsewhere in your top 3, 5 for the grand prize).
 

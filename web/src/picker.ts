@@ -85,7 +85,9 @@ export function mountPicker(
     if (!account) {
       el.innerHTML = `<div class="panel signed-out">
         <p>Sign in with a NEAR <b>testnet</b> wallet to save your picks on-chain. It's free and takes a minute.
-          <span class="small muted">No testnet account? Click sign in and choose <b>Meteor Wallet</b>: it makes a free testnet account for you.</span></p>
+          <span class="small muted">No testnet account? Click sign in and choose <b>Meteor Wallet</b>: it makes a free one.
+          New accounts start empty, so first get free testnet NEAR from the
+          <a href="https://docs.near.org/getting-started/faucet" target="_blank" rel="noopener">NEAR faucet ↗</a>.</span></p>
         <button class="btn pri" id="signin"${locked() ? " disabled" : ""}>Sign in to pick</button></div>`;
       el.querySelector("#signin")?.addEventListener("click", () => wallet.signIn());
       return;
@@ -111,7 +113,8 @@ export function mountPicker(
         setMsg(el, "ok", "Saved on NEAR testnet.");
       } catch (e) {
         button.disabled = false;
-        setMsg(el, "err", e instanceof Error ? e.message : "Something went wrong. Try again.");
+        const text = e instanceof Error ? e.message : "Something went wrong. Try again.";
+        setMsg(el, "err", /balance/i.test(text) ? `${text} Get free testnet NEAR from the NEAR faucet (docs.near.org/getting-started/faucet), then try again.` : text);
       }
     });
   }
