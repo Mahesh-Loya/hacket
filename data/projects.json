@@ -1,5 +1,1775 @@
 [
  {
+  "demo_url": "https://x.com/Edvin325/status/2121491576748917139?a=CXmFOdfr4fS1CNltJbE&s=20",
+  "description": "Scam accounts on NEAR can look friendly. BORK is a memecoin that bites back: holders stake it to flag scammers, losers' coins burn, and any wallet can check the verdict on-chain before you sign. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:05.145Z",
+   "sources": [
+    "https://x.com/Edvin325/status/2121491576748917139"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:8ddda1d2-34a6-4f57-9d9f-31ba1fc45c8b",
+  "media": [
+   {
+    "duration_ms": 96900,
+    "height": 720,
+    "post_url": "https://x.com/Edvin325/status/2121491576748917139",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121491412860678144/img/Anrqrqg91PYrKBgE.jpg",
+    "width": 1280
+   }
+  ],
+  "name": "Bork",
+  "repository_url": "https://github.com/Edvin325/bork",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "8ddda1d2-34a6-4f57-9d9f-31ba1fc45c8b",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "memecoins"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "8ddda1d2-34a6-4f57-9d9f-31ba1fc45c8b",
+  "key": "project/8ddda1d2-34a6-4f57-9d9f-31ba1fc45c8b",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/8ddda1d2-34a6-4f57-9d9f-31ba1fc45c8b",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/fraser_frsr/status/2121489337351070174",
+  "description": "🚀 Paying with crypto means gas, addresses and signing screens — alien steps for anyone outside crypto, and they always will be. Fraser (Ireland) and Elena (Ukraine), a Uniswap v4 hookathon-winning team, built Bursar at NEAR HACKATHON to remove them: a 9B payment agent that lets",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:05.476Z",
+   "sources": [
+    "https://x.com/fraser_frsr/status/2121489337351070174"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:f7c277df-a43f-4d79-a4fc-577be7b350e3",
+  "media": [
+   {
+    "duration_ms": 472138,
+    "height": 1080,
+    "post_url": "https://x.com/fraser_frsr/status/2121489337351070174",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121488461483929600/img/Vaz-BOp5MpC9J4ww.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Bursar — the wallet killer: pay in chat, checked inside the model's weights.",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "f7c277df-a43f-4d79-a4fc-577be7b350e3",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "privacy",
+   "security",
+   "agents",
+   "realworld"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "f7c277df-a43f-4d79-a4fc-577be7b350e3",
+  "key": "project/f7c277df-a43f-4d79-a4fc-577be7b350e3",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/f7c277df-a43f-4d79-a4fc-577be7b350e3",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/0xchris82/status/2121483943375478958",
+  "description": "𝐖𝐡𝐚𝐭 𝐡𝐚𝐩𝐩𝐞𝐧𝐬 𝐰𝐡𝐞𝐧 𝐲𝐨𝐮 𝐠𝐢𝐯𝐞 𝐚𝐧 𝐀𝐈 𝐚𝐠𝐞𝐧𝐭 𝐫𝐞𝐬𝐩𝐨𝐧𝐬𝐢𝐛𝐢𝐥𝐢𝐭𝐲 𝐟𝐨𝐫 𝐜𝐨𝐨𝐫𝐝𝐢𝐧𝐚𝐭𝐢𝐧𝐠 𝐩𝐚𝐲𝐫𝐨𝐥𝐥? It can interpret instructions, organise schedules, analyse payment conditions and coordinate execution. But should it have",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:03.686Z",
+   "sources": [
+    "https://x.com/0xchris82/status/2121483943375478958",
+    "https://x.com/0xchris82/status/2118408331220193332"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:b98abc29-c1ef-4afc-932a-de9d63510729",
+  "media": [
+   {
+    "duration_ms": 177000,
+    "height": 2160,
+    "post_url": "https://x.com/0xchris82/status/2121483943375478958",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121466420546478080/img/hthq_JTwcla00J3w.jpg",
+    "width": 3840
+   },
+   {
+    "alt": null,
+    "height": 588,
+    "post_url": "https://x.com/0xchris82/status/2118408331220193332",
+    "type": "photo",
+    "url": "https://pbs.twimg.com/media/HWYZJM8XAAA6QCz.jpg",
+    "width": 1280
+   }
+  ],
+  "name": "Clavis",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "b98abc29-c1ef-4afc-932a-de9d63510729",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "privacy",
+   "business",
+   "security",
+   "agents",
+   "realworld"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "b98abc29-c1ef-4afc-932a-de9d63510729",
+  "key": "project/b98abc29-c1ef-4afc-932a-de9d63510729",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/b98abc29-c1ef-4afc-932a-de9d63510729",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/omokehinde_dev/status/2121504001946791957?a=e4cf1r_q7UWUrzFlDOU&s=20",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:979b8e07-7e0b-43a0-9dac-ad644d00f871",
+  "name": "Clockline",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "979b8e07-7e0b-43a0-9dac-ad644d00f871",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "defi",
+   "thesis",
+   "privacy"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "979b8e07-7e0b-43a0-9dac-ad644d00f871",
+  "key": "project/979b8e07-7e0b-43a0-9dac-ad644d00f871",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/979b8e07-7e0b-43a0-9dac-ad644d00f871",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/_iam_robert/status/2121502776786292809",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:e42b6a8a-84a7-44e1-9566-4059764272aa",
+  "name": "Clones",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "e42b6a8a-84a7-44e1-9566-4059764272aa",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "security",
+   "agents",
+   "games"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "e42b6a8a-84a7-44e1-9566-4059764272aa",
+  "key": "project/e42b6a8a-84a7-44e1-9566-4059764272aa",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/e42b6a8a-84a7-44e1-9566-4059764272aa",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/Sreekubro/status/2121496122632057176?a=V04vxVcV6GkhGR5IFXw&s=20",
+  "description": "Team passwords outlive the team. Conch makes a account a keyless NFT. Whoever holds it posts; selling it locks everyone else out. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:07.963Z",
+   "sources": [
+    "https://x.com/Sreekubro/status/2121496122632057176"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:beee17c1-d0ee-4fdc-8531-72e51daad3b4",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-12T09:33:28.735Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121496122632057176",
+    "url": "https://near.social"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 79399,
+    "height": 1080,
+    "post_url": "https://x.com/Sreekubro/status/2121496122632057176",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121496048623595520/img/-fppcHvZUjsZlpDy.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "conch",
+  "repository_url": "https://github.com/Sreekubro/conch",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "beee17c1-d0ee-4fdc-8531-72e51daad3b4",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "nfts"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "beee17c1-d0ee-4fdc-8531-72e51daad3b4",
+  "key": "project/beee17c1-d0ee-4fdc-8531-72e51daad3b4",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/beee17c1-d0ee-4fdc-8531-72e51daad3b4",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/Sannagk8/status/2121489582609072306?s=20",
+  "description": "Group deals die because nobody wants to go first. Count Me In: each agent seals \"I'm in, if...\" and a NEAR contract finds the biggest group where every \"if\" holds. Testnet: 37 in vs 0 one at a time. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:04.415Z",
+   "sources": [
+    "https://x.com/Sannagk8/status/2121489582609072306"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:03b361c8-6859-4b55-aff2-e898eb048840",
+  "media": [
+   {
+    "duration_ms": 120200,
+    "height": 1080,
+    "post_url": "https://x.com/Sannagk8/status/2121489582609072306",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121489434847899648/img/O3ECsvmWJ27RG6Rs.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "count me in",
+  "repository_url": "https://github.com/Sannagk8/count-me-in",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "03b361c8-6859-4b55-aff2-e898eb048840",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "swarms"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "03b361c8-6859-4b55-aff2-e898eb048840",
+  "key": "project/03b361c8-6859-4b55-aff2-e898eb048840",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/03b361c8-6859-4b55-aff2-e898eb048840",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/Jimuelle17/status/2121470442712236097",
+  "description": "Your AI agent will pay anyone the prompt tells it to. Eclipse won't let it. The agent never holds funds. A NEAR contract does, paying only the exact receiver + amount the checker approved. Watch a lookalike attack fail 👇 @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:14:51.499Z",
+   "sources": [
+    "https://x.com/Jimuelle17/status/2121470442712236097"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
+  "media": [
+   {
+    "duration_ms": 203500,
+    "height": 1080,
+    "post_url": "https://x.com/Jimuelle17/status/2121470442712236097",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121469559899291649/img/wh0KWr8_B1FGPREw.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Eclipse",
+  "repository_url": "https://github.com/Jimuelle07/eclipse-near",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "security"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
+  "key": "project/bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/tedsrekt/status/2121504394470703272",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:cb305457-eeb6-4642-9c03-be6524f41be4",
+  "name": "EVA",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "cb305457-eeb6-4642-9c03-be6524f41be4",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "privacy"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "cb305457-eeb6-4642-9c03-be6524f41be4",
+  "key": "project/cb305457-eeb6-4642-9c03-be6524f41be4",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/cb305457-eeb6-4642-9c03-be6524f41be4",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/lir1754642/status/2120672176718447021",
+  "description": "A group splits a reward by rating each other. One member can lie to grab more. Live: Code: Built at NEAR HACKATHON @NEARProtocol #NEARHackathon Built with Claude (AI), directed by Kylne700. The video voice is AI too.",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:08.703Z",
+   "sources": [
+    "https://x.com/lir1754642/status/2120672176718447021",
+    "https://kylne700.github.io/near-fair-share"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:c105e3a5-de7f-4efa-8071-8de1a9e11c78",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:36.547Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "demo",
+    "kind_basis": "builder",
+    "source_post_id": "2120672176718447021",
+    "url": "https://kylne700.github.io/near-fair-share"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 83734,
+    "height": 720,
+    "post_url": "https://x.com/lir1754642/status/2120672176718447021",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2120672091741560832/img/_W6fzceKx-ulYRV1.jpg",
+    "width": 1280
+   }
+  ],
+  "name": "Fair Share",
+  "repository_url": "https://github.com/Kylne700/near-fair-share",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "c105e3a5-de7f-4efa-8071-8de1a9e11c78",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "social",
+   "open"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "c105e3a5-de7f-4efa-8071-8de1a9e11c78",
+  "key": "project/c105e3a5-de7f-4efa-8071-8de1a9e11c78",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/c105e3a5-de7f-4efa-8071-8de1a9e11c78",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/toannhu_it/status/2121499278141223180",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:9c689c1f-d16b-4f2a-b4fb-68ff0a5ac665",
+  "name": "FarmVerse (Nông Trại Mộng Mơ)",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "9c689c1f-d16b-4f2a-b4fb-68ff0a5ac665",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "games"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "9c689c1f-d16b-4f2a-b4fb-68ff0a5ac665",
+  "key": "project/9c689c1f-d16b-4f2a-b4fb-68ff0a5ac665",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/9c689c1f-d16b-4f2a-b4fb-68ff0a5ac665",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/0xPlastered/status/2121501926072422568",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:b9748502-d4d0-4860-9536-a975f698a5df",
+  "name": "FireKey",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "b9748502-d4d0-4860-9536-a975f698a5df",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "privacy",
+   "security",
+   "agents"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "b9748502-d4d0-4860-9536-a975f698a5df",
+  "key": "project/b9748502-d4d0-4860-9536-a975f698a5df",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/b9748502-d4d0-4860-9536-a975f698a5df",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/Ashiklijo123/status/2121500014895907206?a=Nxfe4sG7eAZWNKh9VE8&s=20",
+  "description": "Nobody on the council knows a sign-language interpreter. Somebody knows somebody who does. Grapevine: the DAO posts a quest. Its Sputnik treasury on NEAR pays the doer and everyone who passed it on. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:10.528Z",
+   "sources": [
+    "https://x.com/Ashiklijo123/status/2121500014895907206"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:daa82e85-20ba-4b5b-8064-c09bff3dc0ff",
+  "media": [
+   {
+    "duration_ms": 96676,
+    "height": 1080,
+    "post_url": "https://x.com/Ashiklijo123/status/2121500014895907206",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121499966296498177/img/37twul_VrGNZDhaJ.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Grapevine",
+  "repository_url": "https://github.com/Ashiklijo/grapevine",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "daa82e85-20ba-4b5b-8064-c09bff3dc0ff",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "social"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "daa82e85-20ba-4b5b-8064-c09bff3dc0ff",
+  "key": "project/daa82e85-20ba-4b5b-8064-c09bff3dc0ff",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/daa82e85-20ba-4b5b-8064-c09bff3dc0ff",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/MiracleOtugo/status/2121492158007972204?a=VycGY2cZJIjQ20UvT0o&s=20",
+  "description": "worked on something for the @NEARProtocol hackathon. Daily maze game, pay a small ~$1 in eth to enter. Find the monolith, dodge/shoot sentries along the way. Your score is speed + shortest route + sentries destroyed. Fastest finisher gets the biggest cut. Each day’s pot splits",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:05.937Z",
+   "sources": [
+    "https://x.com/MiracleOtugo/status/2121492158007972204",
+    "https://x.com/MiracleOtugo/status/2121492164488110307",
+    "https://x.com/MiracleOtugo/status/2121492162064068821"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:d4218078-2996-44d3-a9d0-74ece9783016",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:33.556Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121492162064068821",
+    "url": "https://ham-maze.vercel.app"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 135892,
+    "height": 1200,
+    "post_url": "https://x.com/MiracleOtugo/status/2121492158007972204",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121490641062354944/img/cXUzAVU5HFh9sD3D.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "HAM: Home's a Maze",
+  "repository_url": "https://github.com/MirakoolDev/ham-maze",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "d4218078-2996-44d3-a9d0-74ece9783016",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "games",
+   "nfts",
+   "open"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "d4218078-2996-44d3-a9d0-74ece9783016",
+  "key": "project/d4218078-2996-44d3-a9d0-74ece9783016",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/d4218078-2996-44d3-a9d0-74ece9783016",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/sathyaonX/status/2121494224692531546",
+  "description": "Built at NEAR HACKATHON: invoice factoring on NEAR. A supplier gets paid today for an invoice due in 60 days. The buyer confirms the debt on-chain, a financier buys it at a discount with one stablecoin transfer, and the contract repays the financier at the due date. Factoring's",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:07.307Z",
+   "sources": [
+    "https://x.com/sathyaonX/status/2121494224692531546"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:33c5c110-075c-49e8-978d-b31c319c8f4f",
+  "media": [
+   {
+    "duration_ms": 35766,
+    "height": 1080,
+    "post_url": "https://x.com/sathyaonX/status/2121494224692531546",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121494105347764224/img/XsmdaqnEeMNuoHw3.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Invoice factoring on NEAR",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "33c5c110-075c-49e8-978d-b31c319c8f4f",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "defi",
+   "realworld"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "33c5c110-075c-49e8-978d-b31c319c8f4f",
+  "key": "project/33c5c110-075c-49e8-978d-b31c319c8f4f",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/33c5c110-075c-49e8-978d-b31c319c8f4f",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/naimulislam/status/2121505068319158428",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:ef08f418-fb4e-4437-a02f-868792091e67",
+  "name": "Is NEAR Already a Payments Rail?",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "ef08f418-fb4e-4437-a02f-868792091e67",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "thesis"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "ef08f418-fb4e-4437-a02f-868792091e67",
+  "key": "project/ef08f418-fb4e-4437-a02f-868792091e67",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/ef08f418-fb4e-4437-a02f-868792091e67",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/DefiPreacherr/status/2121503641810915462",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:cf15d025-2a91-471a-b660-5905738aa4a4",
+  "name": "Klear",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "cf15d025-2a91-471a-b660-5905738aa4a4",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "defi",
+   "privacy",
+   "security",
+   "agents"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "cf15d025-2a91-471a-b660-5905738aa4a4",
+  "key": "project/cf15d025-2a91-471a-b660-5905738aa4a4",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/cf15d025-2a91-471a-b660-5905738aa4a4",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/Alanjoskar123/status/2121493844319739921?a=1iIgaQDx9ScYJLlKN_8&s=20",
+  "description": "A fighting game for money needs a referee no player controls. In Maul Street a NEAR contract holds both stakes, seals each move and pays the winner. No wallet popup per punch. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon Which beast do you pick?",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:06.613Z",
+   "sources": [
+    "https://x.com/Alanjoskar123/status/2121493844319739921"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:6af59910-0ebe-4dce-b07a-2d188a344181",
+  "media": [
+   {
+    "duration_ms": 139600,
+    "height": 1080,
+    "post_url": "https://x.com/Alanjoskar123/status/2121493844319739921",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121493599477252096/img/Nj6UCDe3gtkmEe9b.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "maul street",
+  "repository_url": "https://github.com/Alanjoskar/maul-street",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "6af59910-0ebe-4dce-b07a-2d188a344181",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "games"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "6af59910-0ebe-4dce-b07a-2d188a344181",
+  "key": "project/6af59910-0ebe-4dce-b07a-2d188a344181",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/6af59910-0ebe-4dce-b07a-2d188a344181",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/MuseNear/status/2121500892948213833",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:e88a4840-56cf-4283-a829-70fa1d36528a",
+  "name": "muse-near",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "e88a4840-56cf-4283-a829-70fa1d36528a",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "nfts",
+   "social"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "e88a4840-56cf-4283-a829-70fa1d36528a",
+  "key": "project/e88a4840-56cf-4283-a829-70fa1d36528a",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/e88a4840-56cf-4283-a829-70fa1d36528a",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/nanoodledev/status/2121494423255314869",
+  "description": "New to Nanoodle Pay per run in NEAR or USDC for AI workflows built from 1,000+ models. Built for NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:09.867Z",
+   "sources": [
+    "https://x.com/nanoodledev/status/2121494423255314869",
+    "https://x.com/nanoodledev/status/2121497965022056853",
+    "https://near.nanoodle.com"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:f0336fa2-0881-4611-8ed8-88ee263cd752",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:40.455Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121497965022056853",
+    "url": "https://near.nanoodle.com"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 158500,
+    "height": 1080,
+    "post_url": "https://x.com/nanoodledev/status/2121494423255314869",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121492495397949440/img/zG2uWUlqYn-44C7j.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Nanoodle",
+  "repository_url": "https://github.com/nanoodlecom/nanoodle-mcp",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "f0336fa2-0881-4611-8ed8-88ee263cd752",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "business",
+   "agents"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "f0336fa2-0881-4611-8ed8-88ee263cd752",
+  "key": "project/f0336fa2-0881-4611-8ed8-88ee263cd752",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/f0336fa2-0881-4611-8ed8-88ee263cd752",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/FimasW/status/2121501177774838178?a=YDar4BB3U78isg-MXXA&s=19",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:ba03d77c-0424-4932-8e8b-62cf20860897",
+  "name": "NEAR Agent Spending Guard",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "ba03d77c-0424-4932-8e8b-62cf20860897",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "security"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "ba03d77c-0424-4932-8e8b-62cf20860897",
+  "key": "project/ba03d77c-0424-4932-8e8b-62cf20860897",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/ba03d77c-0424-4932-8e8b-62cf20860897",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/eeeman33/status/2121496576170274988?a=T-N33xqi-O6_WHzTQsc&s=19",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:4a45f8eb-e52f-45e3-b135-647ce3af7fb4",
+  "name": "NEAR SafeOrder",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "4a45f8eb-e52f-45e3-b135-647ce3af7fb4",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "realworld"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "4a45f8eb-e52f-45e3-b135-647ce3af7fb4",
+  "key": "project/4a45f8eb-e52f-45e3-b135-647ce3af7fb4",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/4a45f8eb-e52f-45e3-b135-647ce3af7fb4",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/DEJIOFWEB3/status/2121494986432958621?a=0yf_U8sOV4xHKva_YsY&s=20",
+  "description": "AI agents can move money. A restricted key doesn't show what an allowed contract can do—or prove payment rules hold. NEARMARK inspects agent authority and tests payment controls. @NEARProtocol @NearBuilders @ilblackdragon BUILT FOR THE NEAR HACKATHON 2026. #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:09.068Z",
+   "sources": [
+    "https://x.com/DEJIOFWEB3/status/2121494986432958621",
+    "https://x.com/DEJIOFWEB3/status/2121495282697503008"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:42c205e5-ac2e-40f0-88d6-25c8c739b056",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:37.478Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121495282697503008",
+    "url": "https://nearmark.nearmark-security.workers.dev"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 73666,
+    "height": 720,
+    "post_url": "https://x.com/DEJIOFWEB3/status/2121494986432958621",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121494233634803712/img/3X6h-wbPzOpWGwFm.jpg",
+    "width": 1280
+   }
+  ],
+  "name": "NEARMARK",
+  "repository_url": "https://github.com/GODGRACE07/nearmark-hackathon-2026",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "42c205e5-ac2e-40f0-88d6-25c8c739b056",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "security"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "42c205e5-ac2e-40f0-88d6-25c8c739b056",
+  "key": "project/42c205e5-ac2e-40f0-88d6-25c8c739b056",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/42c205e5-ac2e-40f0-88d6-25c8c739b056",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/young_crypton/status/2121480331203170653?a=yHDlRnJ1rcEbgqp_aHo&s=19",
+  "description": "web3 promised organizations that run at the speed of software. Instead, DAOs run at the speed of council members checking telegram between flights. every day on NEAR, developers ship verified bug fixes and documentation, only to wait 10 days for 3 council members to connect",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:10.201Z",
+   "sources": [
+    "https://x.com/young_crypton/status/2121480331203170653"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:de87f9af-5da9-44fd-aca5-ae0ddef1c611",
+  "media": [
+   {
+    "duration_ms": 90000,
+    "height": 1080,
+    "post_url": "https://x.com/young_crypton/status/2121480331203170653",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121480274844196864/img/Frt0q53WyJkc_T-g.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Pactt",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "de87f9af-5da9-44fd-aca5-ae0ddef1c611",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "social"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "de87f9af-5da9-44fd-aca5-ae0ddef1c611",
+  "key": "project/de87f9af-5da9-44fd-aca5-ae0ddef1c611",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/de87f9af-5da9-44fd-aca5-ae0ddef1c611",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/shariq_ai/status/2121480302170374434",
+  "description": "Introducing ParallaxPay — an AI trading agent you can teach in plain English. Tell it how you trade. It turns your words into a strategy, runs it on NEAR, and explains every move while staying within the limits you set. But here's where it gets interesting. Strategies compete",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:06.273Z",
+   "sources": [
+    "https://x.com/shariq_ai/status/2121480302170374434"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:eb268a65-caa0-4f5a-aa26-7154e3ade0a9",
+  "media": [
+   {
+    "duration_ms": 77400,
+    "height": 1080,
+    "post_url": "https://x.com/shariq_ai/status/2121480302170374434",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121479816981667840/img/jJUHkGgOIlqI-Oc6.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "ParallaxPay",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "eb268a65-caa0-4f5a-aa26-7154e3ade0a9",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "defi",
+   "security",
+   "agents"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "eb268a65-caa0-4f5a-aa26-7154e3ade0a9",
+  "key": "project/eb268a65-caa0-4f5a-aa26-7154e3ade0a9",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/eb268a65-caa0-4f5a-aa26-7154e3ade0a9",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/game_bloc/status/2118999308758393004",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:03ed1f6a-7506-47bb-889e-2826f7b62d93",
+  "name": "Pump",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "03ed1f6a-7506-47bb-889e-2826f7b62d93",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "defi",
+   "privacy"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "03ed1f6a-7506-47bb-889e-2826f7b62d93",
+  "key": "project/03ed1f6a-7506-47bb-889e-2826f7b62d93",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/03ed1f6a-7506-47bb-889e-2826f7b62d93",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/kiddiepop/status/2121495378990334018",
+  "description": "Excited to unveil RAGA Protocol, built for @NEARProtocol #NEARHackathon 2026! 🚀 A JPEG is a claim of value. RAGA transforms NFTs into productive, rentable autonomous AI workers using NEAR native token-bound sub-accounts.",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:08.296Z",
+   "sources": [
+    "https://x.com/kiddiepop/status/2121495378990334018",
+    "https://x.com/kiddiepop/status/2121495383948005732"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:aa0f3986-3ed2-48c3-a207-aef046edcda4",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:35.484Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121495383948005732",
+    "url": "https://raganear.vercel.app"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 180077,
+    "height": 720,
+    "post_url": "https://x.com/kiddiepop/status/2121495378990334018",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121494678071848960/img/Bpz9naOQ_QlFcqtm.jpg",
+    "width": 1280
+   }
+  ],
+  "name": "Raga",
+  "repository_url": "https://github.com/erisandev/raganear",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "aa0f3986-3ed2-48c3-a207-aef046edcda4",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "nfts"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "aa0f3986-3ed2-48c3-a207-aef046edcda4",
+  "key": "project/aa0f3986-3ed2-48c3-a207-aef046edcda4",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/aa0f3986-3ed2-48c3-a207-aef046edcda4",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/game_bloc/status/2121291248820731963",
+  "description": "1/6 One agent’s useful work should benefit many. I built Remora so agents can publish decisions, earn through per-second USDC streams, and let other agents reuse those decisions with limited inference and their own controls. Demo: a NEAR AI leader and local Qwen follower",
+  "enrichment": {
+   "fields": [
+    "description",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:10.866Z",
+   "sources": [
+    "https://x.com/game_bloc/status/2121291248820731963",
+    "https://x.com/game_bloc/status/2121291267527094463"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:5fcf33c6-a437-4a8c-b7f8-6f87defb740d",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:41.885Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121291267527094463",
+    "url": "https://remora-agents.pages.dev/explore"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 314212,
+    "height": 1080,
+    "post_url": "https://x.com/game_bloc/status/2121291248820731963",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121290969374928896/img/w_HpREmwIBEJ81WX.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Remora",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "5fcf33c6-a437-4a8c-b7f8-6f87defb740d",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "defi",
+   "privacy",
+   "swarms",
+   "security",
+   "agents"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "5fcf33c6-a437-4a8c-b7f8-6f87defb740d",
+  "key": "project/5fcf33c6-a437-4a8c-b7f8-6f87defb740d",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/5fcf33c6-a437-4a8c-b7f8-6f87defb740d",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/fawazdevs/status/2121494284964688277",
+  "description": "Built Restock Relay at NEAR HACKATHON’s Autonomous Business track with @NEARProtocol. #NEARHackathon Small shops miss wholesale pricing when ordering alone. Pooling demand helps, but shared wallets introduce custody and trust risks. Shared buying, without a shared purse. 🧵",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:07.635Z",
+   "sources": [
+    "https://x.com/fawazdevs/status/2121494284964688277",
+    "https://x.com/fawazdevs/status/2121494299108139273"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:0d5b06d5-60cf-46ca-ad61-a62a4e476916",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:34.574Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121494299108139273",
+    "url": "https://restock-relay.vercel.app"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 226809,
+    "height": 656,
+    "post_url": "https://x.com/fawazdevs/status/2121494284964688277",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121494086787977217/img/f4CJ66YSpR0mnw6V.jpg",
+    "width": 1264
+   }
+  ],
+  "name": "Restock Relay",
+  "repository_url": "https://github.com/fawazdevx/restock-relay",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "0d5b06d5-60cf-46ca-ad61-a62a4e476916",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "business",
+   "swarms",
+   "security",
+   "agents"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "0d5b06d5-60cf-46ca-ad61-a62a4e476916",
+  "key": "project/0d5b06d5-60cf-46ca-ad61-a62a4e476916",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/0d5b06d5-60cf-46ca-ad61-a62a4e476916",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/ramatleranab/status/2121497839885079015?a=qKf3r26KZsenK6PKo8o&s=20",
+  "description": "NEAR's supply is set by a vote. 5 accounts hold half the votes. Roll Call reads every House of Stake vote from NEAR's contracts. Who votes with your NEAR? Try your account: Built at NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:09.523Z",
+   "sources": [
+    "https://x.com/ramatleranab/status/2121497839885079015"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:f40ce6b3-d34d-48b8-b106-2d4e288b7dd1",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:38.706Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121497839885079015",
+    "url": "https://ramaltman05-sudo.github.io/roll-call/site"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 99666,
+    "height": 1080,
+    "post_url": "https://x.com/ramatleranab/status/2121497839885079015",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121497715779727360/img/HYyfhVZc5-eHEb1M.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "roll call",
+  "repository_url": "https://github.com/ramaltman05-sudo/roll-call",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "f40ce6b3-d34d-48b8-b106-2d4e288b7dd1",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "thesis"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "f40ce6b3-d34d-48b8-b106-2d4e288b7dd1",
+  "key": "project/f40ce6b3-d34d-48b8-b106-2d4e288b7dd1",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/f40ce6b3-d34d-48b8-b106-2d4e288b7dd1",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/solidonxyz/status/2121455441050051059",
+  "description": null,
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:555819dc-e2d7-4a04-a8d6-6a18af3a968f",
+  "name": "Solidon",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "555819dc-e2d7-4a04-a8d6-6a18af3a968f",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "defi",
+   "memecoins",
+   "open"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "555819dc-e2d7-4a04-a8d6-6a18af3a968f",
+  "key": "project/555819dc-e2d7-4a04-a8d6-6a18af3a968f",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/555819dc-e2d7-4a04-a8d6-6a18af3a968f",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/Vexanaks123/status/2121484584907141387?a=1lslNnex_yD1yWfwQT8&s=20",
+  "description": "Can't post \"we must sell quietly\" or \"I want a new job\"? NEAR Social is public forever. Sotto: NEAR AI turns your secret into a safe hint in sealed hardware. Replies stay locked. What would you ask? Built at NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:03.296Z",
+   "sources": [
+    "https://x.com/Vexanaks123/status/2121484584907141387"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:40743a25-d037-4905-86ca-6c9b23fafc26",
+  "media": [
+   {
+    "duration_ms": 114200,
+    "height": 1080,
+    "post_url": "https://x.com/Vexanaks123/status/2121484584907141387",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121484526547537921/img/gPZe28I5sjvZTOXy.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Sotto",
+  "repository_url": "https://github.com/Vexanaks123/sotto",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "40743a25-d037-4905-86ca-6c9b23fafc26",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "privacy"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "40743a25-d037-4905-86ca-6c9b23fafc26",
+  "key": "project/40743a25-d037-4905-86ca-6c9b23fafc26",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/40743a25-d037-4905-86ca-6c9b23fafc26",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/sathyaonX/status/2121493946790535555",
+  "description": "Built at NEAR HACKATHON: Sourcio. A buyer's AI agent and a supplier's AI agent negotiate a wholesale order, then close it on-chain. The NEAR contract only accepts the exact terms they agreed (sha256), and the agent spends from a capped budget it can't exceed. Demo uses the",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:06.960Z",
+   "sources": [
+    "https://x.com/sathyaonX/status/2121493946790535555"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:4c58b2a8-9193-4bba-9344-4339fbb36cbb",
+  "media": [
+   {
+    "duration_ms": 34266,
+    "height": 1080,
+    "post_url": "https://x.com/sathyaonX/status/2121493946790535555",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121493695140610048/img/qfmoufYsc2I8IU-y.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Sourcio: agent-to-agent B2B deals on NEAR",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "4c58b2a8-9193-4bba-9344-4339fbb36cbb",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "business",
+   "agents"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "4c58b2a8-9193-4bba-9344-4339fbb36cbb",
+  "key": "project/4c58b2a8-9193-4bba-9344-4339fbb36cbb",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/4c58b2a8-9193-4bba-9344-4339fbb36cbb",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/fredrinyks4/status/2121497627326103999?a=vcOEN2PPqk7DC7iewEU&s=20",
+  "description": "Rent out your idle computer by the minute. Renters pay, log in, and their key stops working when time is up. NEAR checks the payment and signs the key, so no company sits in the middle. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:11.570Z",
+   "sources": [
+    "https://x.com/fredrinyks4/status/2121497627326103999"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:d1e67b2d-393e-4f13-8057-09f0b44e810c",
+  "media": [
+   {
+    "duration_ms": 139250,
+    "height": 1080,
+    "post_url": "https://x.com/fredrinyks4/status/2121497627326103999",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121497524313915392/img/BGnQA9HNu6C4PTFs.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "sublet",
+  "repository_url": "https://github.com/Fredrinks12/sublet",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "d1e67b2d-393e-4f13-8057-09f0b44e810c",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "open"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "d1e67b2d-393e-4f13-8057-09f0b44e810c",
+  "key": "project/d1e67b2d-393e-4f13-8057-09f0b44e810c",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/d1e67b2d-393e-4f13-8057-09f0b44e810c",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/adindacq/status/2121488512654688665",
+  "description": "NEAR's active accounts look like demand. Most aren't. Subsidy Filter strips one Telegram game and quota days from NEAR onchain data: Aug 2026 falls from 215,609 to 63,134 (29.3%). Built at NEAR HACKATHON: @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "repository_url",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:04.047Z",
+   "sources": [
+    "https://x.com/adindacq/status/2121488512654688665"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:70ef8c06-c28c-4fa4-b949-e486852bfb63",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:30.768Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121488512654688665",
+    "url": "https://adindamochamad.github.io/subsidy-filter"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 76881,
+    "height": 1080,
+    "post_url": "https://x.com/adindacq/status/2121488512654688665",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121488389572902913/img/_1VTaY2bfaIx5eGo.jpg",
+    "width": 1934
+   }
+  ],
+  "name": "Subsidy Filter",
+  "repository_url": "https://github.com/adindamochamad/subsidy-filter",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "70ef8c06-c28c-4fa4-b949-e486852bfb63",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "thesis"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "70ef8c06-c28c-4fa4-b949-e486852bfb63",
+  "key": "project/70ef8c06-c28c-4fa4-b949-e486852bfb63",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/70ef8c06-c28c-4fa4-b949-e486852bfb63",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/WayfindCloud/status/2121487374148608451",
+  "description": "Introducing Wayfind ONE Always-on AI needs privacy. Wayfind ONE runs sensitive tasks in disposable sandboxes, with NEAR AI private inference + a signed receipt you can verify. Built at @NEARProtocol #NEARHackathon",
+  "enrichment": {
+   "fields": [
+    "description",
+    "links",
+    "media"
+   ],
+   "method": "x-thread",
+   "retrieved_at": "2026-11-14T07:15:04.811Z",
+   "sources": [
+    "https://x.com/WayfindCloud/status/2121487374148608451"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:d6a8873d-c1c0-4573-bfe9-81ce6c8a92c6",
+  "links": [
+   {
+    "check": {
+     "checked_at": "2026-11-14T07:21:31.882Z",
+     "http_status": 200,
+     "verdict": "live"
+    },
+    "kind": "website",
+    "kind_basis": "default",
+    "source_post_id": "2121487374148608451",
+    "url": "https://one.wayfind.click"
+   }
+  ],
+  "media": [
+   {
+    "duration_ms": 142152,
+    "height": 1080,
+    "post_url": "https://x.com/WayfindCloud/status/2121487374148608451",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2121485139901657088/img/dre-rnB18LEszLAz.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Wayfind ONE",
+  "repository_url": null,
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "d6a8873d-c1c0-4573-bfe9-81ce6c8a92c6",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "privacy",
+   "security"
+  ],
+  "updated_at": "2026-11-14T07:30:30.794Z",
+  "submission_id": "d6a8873d-c1c0-4573-bfe9-81ce6c8a92c6",
+  "key": "project/d6a8873d-c1c0-4573-bfe9-81ce6c8a92c6",
+  "account": "nearhunt.near",
+  "block_height": 224482815,
+  "block_timestamp": "1794641549564096018",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/d6a8873d-c1c0-4573-bfe9-81ce6c8a92c6",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/joezzyweb3/status/2119220897345122339",
+  "description": "Let me take you back to May 2026... Remember when an AI agent sent away about $175,000 because someone asked it to translate a message written in Morse code (sorry Grok 😅) The decoded text was a transfer order, and the agent obeyed No hack. No stolen key. Just prompt",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media",
+    "repository_url"
+   ],
+   "method": "builder-issue",
+   "retrieved_at": "2026-11-14T06:48:00.000Z",
+   "sources": [
+    "https://x.com/joezzyweb3/status/2119220897345122339",
+    "https://github.com/satojandro/near-hunt/issues/46",
+    "https://github.com/joezzy-web3/clear-to-pay"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:2b198e26-7589-45a4-b6d9-0c838c248657",
+  "media": [
+   {
+    "duration_ms": 212544,
+    "height": 1080,
+    "post_url": "https://x.com/joezzyweb3/status/2119220897345122339",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2119218184729325568/img/A_0b-eO6NMRzYaZT.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Clear to Pay",
+  "repository_url": "https://github.com/joezzy-web3/clear-to-pay",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "2b198e26-7589-45a4-b6d9-0c838c248657",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "privacy",
+   "business",
+   "agents",
+   "realworld"
+  ],
+  "updated_at": "2026-11-14T06:50:36.088Z",
+  "submission_id": "2b198e26-7589-45a4-b6d9-0c838c248657",
+  "key": "project/2b198e26-7589-45a4-b6d9-0c838c248657",
+  "account": "nearhunt.near",
+  "block_height": 224478669,
+  "block_timestamp": "1794639153104525921",
+  "votes": 0,
+  "url": "https://nearhunt.xyz/p/2b198e26-7589-45a4-b6d9-0c838c248657",
+  "comments": 0
+ },
+ {
+  "demo_url": "https://x.com/neromtoobad/status/2119855648150339694?a=YskdSXnQbeCqqd_a4HM&s=46",
+  "description": "i built \"Crownfall\" a 3d medieval game on near where eight great houses compete for one empty throne. (game of thrones) esq each house has its own memecoin that players can buy and sell at the mint. to enter a house's game, you burn its coin. the more people play, the more",
+  "enrichment": {
+   "fields": [
+    "description",
+    "media",
+    "repository_url"
+   ],
+   "method": "builder-issue",
+   "retrieved_at": "2026-11-14T06:48:00.000Z",
+   "sources": [
+    "https://x.com/neromtoobad/status/2119855648150339694",
+    "https://github.com/satojandro/near-hunt/issues/45",
+    "https://github.com/neromtoobad/crownfall"
+   ]
+  },
+  "external_campaigns": [],
+  "id": "nearhackathon-2026:57131c18-0efc-45db-8fc5-2a212134f46d",
+  "media": [
+   {
+    "duration_ms": 130580,
+    "height": 1080,
+    "post_url": "https://x.com/neromtoobad/status/2119855648150339694",
+    "type": "video",
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2119855186822729728/img/0YwZjJmgokmGUckR.jpg",
+    "width": 1920
+   }
+  ],
+  "name": "Crownfall",
+  "repository_url": "https://github.com/neromtoobad/crownfall",
+  "schema": "nearhunt/project/1",
+  "source": {
+   "event": "nearhackathon-2026",
+   "submission_id": "57131c18-0efc-45db-8fc5-2a212134f46d",
+   "url": "https://nearhackathon.com/#submissions"
+  },
+  "tracks": [
+   "games",
+   "memecoins",
+   "social",
+   "open"
+  ],
+  "updated_at": "2026-11-14T06:50:36.088Z",
+  "submission_id": "57131c18-0efc-45db-8fc5-2a212134f46d",
+  "key": "project/57131c18-0efc-45db-8fc5-2a212134f46d",
+  "account": "nearhunt.near",
+  "block_height": 224478669,
+  "block_timestamp": "1794639153104525921",
+  "votes": 3,
+  "url": "https://nearhunt.xyz/p/57131c18-0efc-45db-8fc5-2a212134f46d",
+  "comments": 1
+ },
+ {
   "demo_url": "https://x.com/ardmere_io/status/2121477379889746030",
   "description": "Introducing Ardmere: A unified verification layer for exchange Proof-of-Reserves. Built at NEAR HACKATHON @NEARProtocol @NEARHackathon CEX hedging leaves your capital on an exchange — but most public Proof-of-Reserves can’t be recomputed by a third party. Intent solvers and",
   "enrichment": {
@@ -46,32 +1816,6 @@
   "block_timestamp": "1794636373461923924",
   "votes": 0,
   "url": "https://nearhunt.xyz/p/3995cb3d-a73c-4f4c-b674-a79ff27ec059",
-  "comments": 0
- },
- {
-  "demo_url": "https://x.com/Jimuelle17/status/2121470442712236097",
-  "description": null,
-  "external_campaigns": [],
-  "id": "nearhackathon-2026:bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
-  "name": "Eclipse",
-  "repository_url": null,
-  "schema": "nearhunt/project/1",
-  "source": {
-   "event": "nearhackathon-2026",
-   "submission_id": "bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
-   "url": "https://nearhackathon.com/#submissions"
-  },
-  "tracks": [
-   "security"
-  ],
-  "updated_at": "2026-11-14T06:04:14.029Z",
-  "submission_id": "bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
-  "key": "project/bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
-  "account": "nearhunt.near",
-  "block_height": 224473975,
-  "block_timestamp": "1794636373461923924",
-  "votes": 0,
-  "url": "https://nearhunt.xyz/p/bc99afc5-0c03-4a24-9af7-3efebe75cdcc",
   "comments": 0
  },
  {
@@ -12517,7 +14261,7 @@
   "account": "nearhunt.near",
   "block_height": 224397386,
   "block_timestamp": "1794592411813940872",
-  "votes": 1,
+  "votes": 2,
   "url": "https://nearhunt.xyz/p/6aa225c7-44a1-455d-b136-7b479788ec04",
   "comments": 0
  },
@@ -25611,7 +27355,7 @@
   "account": "nearhunt.near",
   "block_height": 224338086,
   "block_timestamp": "1794558321069181232",
-  "votes": 3,
+  "votes": 10,
   "url": "https://nearhunt.xyz/p/2b9b8d56-3666-42b7-bd00-edd5a8e014f4",
   "comments": 0
  },
@@ -49714,7 +51458,7 @@
   "account": "nearhunt.near",
   "block_height": 223986432,
   "block_timestamp": "1794354102277773884",
-  "votes": 2,
+  "votes": 9,
   "url": "https://nearhunt.xyz/p/2e64384f-215c-4111-9b02-f4b3073db265",
   "comments": 0
  },
@@ -52808,56 +54552,6 @@
   "votes": 0,
   "url": "https://nearhunt.xyz/p/44429927-7ac7-4068-92af-a3860bff045d",
   "comments": 0
- },
- {
-  "demo_url": "https://x.com/neromtoobad/status/2119855648150339694?a=YskdSXnQbeCqqd_a4HM&s=46",
-  "description": "i built \"Crownfall\" a 3d medieval game on near where eight great houses compete for one empty throne. (game of thrones) esq each house has its own memecoin that players can buy and sell at the mint. to enter a house's game, you burn its coin. the more people play, the more",
-  "enrichment": {
-   "fields": [
-    "description",
-    "media"
-   ],
-   "method": "x-thread",
-   "retrieved_at": "2026-11-10T00:24:16.230Z",
-   "sources": [
-    "https://x.com/neromtoobad/status/2119855648150339694"
-   ]
-  },
-  "external_campaigns": [],
-  "id": "nearhackathon-2026:57131c18-0efc-45db-8fc5-2a212134f46d",
-  "media": [
-   {
-    "duration_ms": 130580,
-    "height": 1080,
-    "post_url": "https://x.com/neromtoobad/status/2119855648150339694",
-    "type": "video",
-    "url": "https://pbs.twimg.com/amplify_video_thumb/2119855186822729728/img/0YwZjJmgokmGUckR.jpg",
-    "width": 1920
-   }
-  ],
-  "name": "Crownfall",
-  "repository_url": null,
-  "schema": "nearhunt/project/1",
-  "source": {
-   "event": "nearhackathon-2026",
-   "submission_id": "57131c18-0efc-45db-8fc5-2a212134f46d",
-   "url": "https://nearhackathon.com/#submissions"
-  },
-  "tracks": [
-   "games",
-   "memecoins",
-   "social",
-   "open"
-  ],
-  "updated_at": "2026-11-10T00:30:51.828Z",
-  "submission_id": "57131c18-0efc-45db-8fc5-2a212134f46d",
-  "key": "project/57131c18-0efc-45db-8fc5-2a212134f46d",
-  "account": "nearhunt.near",
-  "block_height": 223841439,
-  "block_timestamp": "1794270691523453945",
-  "votes": 3,
-  "url": "https://nearhunt.xyz/p/57131c18-0efc-45db-8fc5-2a212134f46d",
-  "comments": 1
  },
  {
   "demo_url": "https://x.com/DiagurenDev/status/2117647339829772555",
@@ -61840,56 +63534,6 @@
   "block_timestamp": "1794191036890016308",
   "votes": 0,
   "url": "https://nearhunt.xyz/p/e3a70e67-8135-41c9-b2db-7a80b9fb42ab",
-  "comments": 0
- },
- {
-  "demo_url": "https://x.com/joezzyweb3/status/2119220897345122339",
-  "description": "Let me take you back to May 2026... Remember when an AI agent sent away about $175,000 because someone asked it to translate a message written in Morse code (sorry Grok 😅) The decoded text was a transfer order, and the agent obeyed No hack. No stolen key. Just prompt",
-  "enrichment": {
-   "fields": [
-    "description",
-    "media"
-   ],
-   "method": "x-thread",
-   "retrieved_at": "2026-11-09T01:41:47.039Z",
-   "sources": [
-    "https://x.com/joezzyweb3/status/2119220897345122339"
-   ]
-  },
-  "external_campaigns": [],
-  "id": "nearhackathon-2026:2b198e26-7589-45a4-b6d9-0c838c248657",
-  "media": [
-   {
-    "duration_ms": 212544,
-    "height": 1080,
-    "post_url": "https://x.com/joezzyweb3/status/2119220897345122339",
-    "type": "video",
-    "url": "https://pbs.twimg.com/amplify_video_thumb/2119218184729325568/img/A_0b-eO6NMRzYaZT.jpg",
-    "width": 1920
-   }
-  ],
-  "name": "Clear to Pay",
-  "repository_url": null,
-  "schema": "nearhunt/project/1",
-  "source": {
-   "event": "nearhackathon-2026",
-   "submission_id": "2b198e26-7589-45a4-b6d9-0c838c248657",
-   "url": "https://nearhackathon.com/#submissions"
-  },
-  "tracks": [
-   "privacy",
-   "business",
-   "agents",
-   "realworld"
-  ],
-  "updated_at": "2026-11-09T02:22:38.738Z",
-  "submission_id": "2b198e26-7589-45a4-b6d9-0c838c248657",
-  "key": "project/2b198e26-7589-45a4-b6d9-0c838c248657",
-  "account": "nearhunt.near",
-  "block_height": 223703564,
-  "block_timestamp": "1794191036890016308",
-  "votes": 0,
-  "url": "https://nearhunt.xyz/p/2b198e26-7589-45a4-b6d9-0c838c248657",
   "comments": 0
  },
  {

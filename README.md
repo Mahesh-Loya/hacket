@@ -38,7 +38,7 @@ Needs Rust (`rustup`), Python 3.10+ with `pytest` (`python3 -m pip install pytes
 ./demo.sh
 ```
 
-**See:** contract tests pass, agent tests pass, the 5 agents score the committed snapshot of 1,220 entries and print each one's grand prize pick, the website tests pass and it builds, and the live leaderboard is printed from testnet.
+**See:** contract tests pass, agent tests pass, the 5 agents score the committed snapshot of 1,255 entries and print each one's grand prize pick, the website tests pass and it builds, and the live leaderboard is printed from testnet.
 
 You can also run each part on its own:
 
