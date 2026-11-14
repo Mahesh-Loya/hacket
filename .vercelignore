@@ -1,8 +1,8 @@
-contract/
-agents/
-tests/
-docs/
-scripts/
+/contract/
+/agents/
+/tests/
+/docs/
+/scripts/
 .superpowers/
 **/node_modules/
 **/target/
