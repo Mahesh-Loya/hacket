@@ -13,5 +13,5 @@ TRACKS = ["defi", "thesis", "privacy", "business", "swarms", "security", "agents
           "realworld", "games", "nfts", "memecoins", "social", "open"]
 
 # Agents never pick our own entry. Fill in our submission id once it exists.
-OWN_PROJECT_IDS: set[str] = set()
+OWN_PROJECT_IDS: set[str] = {"71a80253-ca7c-4d3b-ad13-179281342058"}  # our own NEAR Hackathon submission
 OWN_PROJECT_NAME = "The Hackathon Market"

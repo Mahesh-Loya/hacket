@@ -1,6 +1,6 @@
 # The Hackathon Market
 
-**Can AI predict who wins the NEAR Hackathon?** Five judge agents (rule-based personas) read all ~1,200 entries and put their predicted top 3 for every track on NEAR. Builders make their own picks for free. Picks lock when judging starts (16 Nov 2026 00:00 UTC). When the winners are announced, one leaderboard shows whether humans or AI called it.
+**Can AI predict who wins the NEAR Hackathon?** Five judge agents (rule-based personas) read all ~1,500 entries and put their predicted top 3 for every track on NEAR. Builders make their own picks for free. Picks lock when judging starts (16 Nov 2026 00:00 UTC). When the winners are announced, one leaderboard shows whether humans or AI called it.
 
 - **Live site:** <https://hackathon-market-xi.vercel.app>
 - **Contract:** [`market.hackket.testnet`](https://testnet.nearblocks.io/address/market.hackket.testnet) on NEAR testnet
@@ -8,7 +8,7 @@
 
 ## The problem
 
-Around 1,200 projects entered the NEAR Hackathon, and judging is partly done by AI (Claude Code and Codex screen the repos first). Builders want to know two things: how their project looks to a judge, and who is likely to win. Nobody answers either question in public, with predictions that can't be edited afterwards.
+Around 1,500 projects entered the NEAR Hackathon, and judging is partly done by AI (Claude Code and Codex screen the repos first). Builders want to know two things: how their project looks to a judge, and who is likely to win. Nobody answers either question in public, with predictions that can't be edited afterwards.
 
 The Hackathon Market answers both. Every agent explains how it sees each project in one line. Every prediction is stored on NEAR before the lock, so nobody can change a guess once results come out.
 
@@ -19,13 +19,13 @@ The Hackathon Market answers both. Every agent explains how it sees each project
 | **Technical implementation** | A Rust contract with 22 unit tests: the lock is enforced by block time, players fund their own storage with a refund, results are owner-only and only after the lock, and scoring runs in a view call. Five agents each sign from their own NEAR account. 23 Python tests, 51 website tests, and `./demo.sh` runs everything in one command. |
 | **Design** | One page that a first-time player can follow: a Humans vs AI scoreboard, every entry ranked with a search, a 3-step how-to-play box, free play money, and one-click agent picks to start from. It works on phones. |
 | **Impact** | Every builder in the hackathon can see how five judges with different lenses rate their project, and why, before the real judging. Share links let them post their rank. The game gives the whole hackathon a public, tamper-proof prediction record. |
-| **Originality** | As far as we could find among ~1,200 entries, no other project predicts this hackathon's own winners or ranks the other entries. It's a game about the hackathon, played by humans and agents on one leaderboard. |
+| **Originality** | As far as we could find among ~1,500 entries, no other project predicts this hackathon's own winners or ranks the other entries. It's a game about the hackathon, played by humans and agents on one leaderboard. |
 | **Sustainability** | It's reusable for any hackathon. The tracks live in `contract/src/scoring.rs`, `agents/config.py` and `web/src/projects.ts`, the lock time is a deploy argument (`scripts/deploy.sh`), the agents read any NearHunt-style API, and moving to mainnet is a redeploy. |
 
 ## Try it (live, ~2 minutes)
 
 1. Open the live site. **See:** the Humans vs AI scoreboard with a countdown to the lock, a strip of where the agents agree, five judge cards and a table of each agent's #1 pick per track.
-2. Under **Where does your project stand?**, scroll the list of every entry (ordered by the average of the 5 judges' ranks), or type a project name (e.g. `Nims`) and click it. **See:** a bar per agent showing where it ranks the project out of ~1,200, whether it picked it, and why. **Share this rank on X** posts it, and the link opens the site on that project.
+2. Under **Where does your project stand?**, scroll the list of every entry (ordered by the average of the 5 judges' ranks), or type a project name (e.g. `Nims`) and click it. **See:** a bar per agent showing where it ranks the project out of ~1,500, whether it picked it, and why. **Share this rank on X** posts it, and the link opens the site on that project.
 3. Under **Make your picks**, follow the 3 steps on the page. **(a)** Click **Sign in to pick**, choose **Meteor Wallet** and create a free testnet account (its name ends in `.testnet`). A brand-new account has 0 NEAR, so Meteor may say "not enough balance": that's expected. **(b)** Type the account name into **Send me play money**: the site sends 0.1 free testnet NEAR (the [NEAR faucet](https://docs.near.org/getting-started/faucet) also works). **(c)** Click **Sign in to pick** again and approve. **See:** "Signed in as …" and a form with 14 categories. (MyNearWallet no longer creates new accounts; existing testnet accounts can still sign in with it.)
 4. Under **Start from an agent's picks**, click an agent (e.g. **Builder**) to copy its picks, change any you disagree with, and click **Lock in my picks**. Approve in the wallet. **See:** "Saved on NEAR testnet." and your account on the leaderboard.
 5. After the official results (by 18 Nov), **see:** points on the leaderboard (3 for the exact place, 1 for elsewhere in your top 3, 5 for the grand prize).
@@ -38,7 +38,7 @@ Needs Rust (`rustup`), Python 3.10+ with `pytest` (`python3 -m pip install pytes
 ./demo.sh
 ```
 
-**See:** contract tests pass, agent tests pass, the 5 agents score the committed snapshot of 1,255 entries and print each one's grand prize pick, the website tests pass and it builds, and the live leaderboard is printed from testnet.
+**See:** contract tests pass, agent tests pass, the 5 agents score the committed snapshot of 1,574 entries and print each one's grand prize pick, the website tests pass and it builds, and the live leaderboard is printed from testnet.
 
 You can also run each part on its own:
 
