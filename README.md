@@ -2,7 +2,7 @@
 
 **Can AI predict who wins the NEAR Hackathon?** Five AI agents read every one of the ~680 entries and put their predicted top 3 for every track on NEAR. Builders make their own picks for free. Picks lock when judging starts (16 Nov 2026 00:00 UTC). When the winners are announced, one leaderboard shows whether humans or AI called it.
 
-- **Live site:** LIVE_URL
+- **Live site:** <https://hackathon-market-xi.vercel.app>
 - **Contract:** [`market.hackket.testnet`](https://testnet.nearblocks.io/address/market.hackket.testnet) on NEAR testnet
 - **Rules and scoring:** [RULES.md](RULES.md)
 
