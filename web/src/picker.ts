@@ -85,7 +85,7 @@ export function mountPicker(
     if (!account) {
       el.innerHTML = `<div class="panel signed-out">
         <p>Sign in with a NEAR <b>testnet</b> wallet to save your picks on-chain. It's free and takes a minute.
-          <a class="small muted" href="https://testnet.mynearwallet.com/create" target="_blank" rel="noopener">No testnet account? Make one here ↗</a></p>
+          <span class="small muted">No testnet account? Click sign in and choose <b>Meteor Wallet</b>: it makes a free testnet account for you.</span></p>
         <button class="btn pri" id="signin"${locked() ? " disabled" : ""}>Sign in to pick</button></div>`;
       el.querySelector("#signin")?.addEventListener("click", () => wallet.signIn());
       return;
