@@ -1,4 +1,4 @@
-import { view, type Entry } from "./chain";
+import { availableBalance, view, type Entry } from "./chain";
 import { LOCK_AT_MS } from "./config";
 import { CATEGORY_ORDER } from "./consensus";
 import { esc } from "./esc";
@@ -71,6 +71,31 @@ function setMsg(el: HTMLElement, kind: "ok" | "err" | "wait", text: string) {
   msg.textContent = text;
 }
 
+const LOW_BALANCE = 6n * 10n ** 22n; // 0.06 NEAR: a little more than one save needs
+
+/** Asks our /api/drip function for 0.1 free testnet NEAR. */
+async function tap(accountId: string, msg: HTMLElement) {
+  const show = (kind: "ok" | "err" | "wait", text: string) => {
+    msg.className = `msg ${kind}`;
+    msg.textContent = text;
+  };
+  const name = accountId.trim().toLowerCase();
+  if (!name) return show("err", "Type your testnet account name first, e.g. yourname.testnet.");
+  show("wait", "Sending…");
+  try {
+    const res = await fetch("/api/drip", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ account_id: name }),
+    });
+    const out = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+    if (out.ok) show("ok", `Sent 0.1 testnet NEAR to ${name}. You're ready to play.`);
+    else show("err", `${out.error ?? "That didn't work."} You can also use the NEAR faucet: docs.near.org/getting-started/faucet`);
+  } catch {
+    show("err", "Couldn't reach the play-money tap. Use the NEAR faucet: docs.near.org/getting-started/faucet");
+  }
+}
+
 export function mountPicker(
   el: HTMLElement,
   data: Data,
@@ -83,17 +108,36 @@ export function mountPicker(
     const account = wallet.accountId();
     hooks.onAccount(account);
     if (!account) {
-      el.innerHTML = `<div class="panel signed-out">
-        <p>Sign in with a NEAR <b>testnet</b> wallet to save your picks on-chain. It's free and takes a minute.
-          <span class="small muted">No testnet account? Click sign in and choose <b>Meteor Wallet</b>: it makes a free one.
-          New accounts start empty, so first get free testnet NEAR from the
-          <a href="https://docs.near.org/getting-started/faucet" target="_blank" rel="noopener">NEAR faucet ↗</a>.</span></p>
-        <button class="btn pri" id="signin"${locked() ? " disabled" : ""}>Sign in to pick</button></div>`;
+      const dis = locked() ? " disabled" : "";
+      el.innerHTML = `<div class="panel">
+        <ol class="steps">
+          <li><b>Get a free testnet wallet.</b> Click <b>Sign in to pick</b>, choose <b>Meteor Wallet</b> and create one (its name ends in <code>.testnet</code>).
+            If Meteor says “not enough balance”, that's normal for a new wallet: do step 2.</li>
+          <li><b>Get free play money.</b> Testnet NEAR has no real value; we send 0.1 so you can save picks.
+            <form class="tap" id="tap"><input id="tap-name" placeholder="yourname.testnet" autocomplete="off" aria-label="Your testnet account"${dis} />
+            <button class="btn" type="submit"${dis}>Send me play money</button></form><span id="tap-msg" class="msg" role="status"></span></li>
+          <li><b>Make your picks.</b> Sign in, copy a robot's picks, change what you disagree with, and lock them in.</li>
+        </ol>
+        <button class="btn pri" id="signin"${dis}>Sign in to pick</button></div>`;
       el.querySelector("#signin")?.addEventListener("click", () => wallet.signIn());
+      el.querySelector<HTMLFormElement>("#tap")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = el.querySelector<HTMLInputElement>("#tap-name")!.value;
+        void tap(name, el.querySelector<HTMLElement>("#tap-msg")!);
+      });
       return;
     }
     const current = await view<Entry | null>("get_picks", { account_id: account }).catch(() => null);
     renderForm(el, data, current, locked());
+    const balance = await availableBalance(account);
+    if (balance !== null && balance < LOW_BALANCE && !locked()) {
+      el.querySelector(".picker-top")?.insertAdjacentHTML(
+        "afterend",
+        `<div class="row low"><span>Your wallet is low on testnet NEAR, so saving may fail.</span>
+          <button class="btn sm" id="tap-me">Send me free play money</button><span id="tap-msg" class="msg" role="status"></span></div>`,
+      );
+      el.querySelector("#tap-me")?.addEventListener("click", () => void tap(account, el.querySelector<HTMLElement>("#tap-msg")!));
+    }
     el.querySelector("#signout")?.addEventListener("click", () => wallet.signOut());
     el.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((b) =>
       b.addEventListener("click", () => {

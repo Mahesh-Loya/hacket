@@ -1,0 +1,8 @@
+{
+  "name": "hackathon-market-api",
+  "private": true,
+  "description": "Serverless function for the live site (free testnet play money).",
+  "dependencies": {
+    "near-api-js": "6.5.1"
+  }
+}

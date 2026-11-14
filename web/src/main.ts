@@ -7,6 +7,7 @@ import { agentIcon, logoMark } from "./icons";
 import { mountPicker } from "./picker";
 import { AGENTS, TRACKS, label, loadData, safeUrl, trackName, type Data } from "./projects";
 import { filterRankings, projectRankings, type RankingRow } from "./rankings";
+import { projectFromHash, projectLink, shareOnX } from "./share";
 import { countdown, places, rankBarWidth, readBoard, summarize, type Summary } from "./scoreboard";
 
 const $ = (id: string) => document.getElementById(id)!;
@@ -156,6 +157,7 @@ const PAGE = 30; // rows drawn per batch; the box shows about 7 at a time
 function detailHtml(row: RankingRow, data: Data) {
   const p = data.byId.get(row.id)!;
   const total = data.projects.length;
+  const link = projectLink(location.href, row.id);
   const bars = Object.entries(AGENTS)
     .map(([name, meta]) => {
       const out = data.agents[name];
@@ -176,6 +178,10 @@ function detailHtml(row: RankingRow, data: Data) {
   return `<div class="result">
     <div class="result-h"><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">Open on NearHunt ↗</a>
       <span class="chip">${p.tracks.map((t) => esc(trackName(t))).join(" · ")}</span></div>
+    <div class="share">
+      <a class="btn sm pri" href="${esc(shareOnX(p.name, row.place, total, link))}" target="_blank" rel="noopener">Share this rank on X</a>
+      <button class="btn sm" data-link="${esc(link)}">Copy link</button>
+    </div>
     ${p.summary ? `<p class="says">Builder says: “${esc(p.summary)}”</p>` : ""}
     ${bars}
   </div>`;
@@ -251,6 +257,22 @@ function mountRankings(data: Data) {
     open = open === id ? null : id;
     render();
   });
+  // "Copy link" in an open project.
+  el.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-link]");
+    if (!btn) return;
+    void navigator.clipboard?.writeText(btn.dataset.link!).then(() => (btn.textContent = "Link copied ✓"));
+  });
+  // A shared link (#p=<id>) opens that project.
+  const openFromHash = () => {
+    const id = projectFromHash(location.hash);
+    if (!id || !data.byId.has(id)) return;
+    input.value = data.byId.get(id)!.name;
+    open = id;
+    reset();
+    $("find-sec").scrollIntoView();
+  };
+  window.addEventListener("hashchange", openFromHash);
   // Grand picks on the agent cards jump to that project here.
   document.addEventListener("click", (e) => {
     const id = (e.target as HTMLElement).closest<HTMLElement>("[data-show]")?.dataset.show;
@@ -260,6 +282,7 @@ function mountRankings(data: Data) {
     reset();
   });
   render();
+  openFromHash();
 }
 
 /* ---------- leaderboard ---------- */

@@ -44,3 +44,28 @@ export type Config = {
 };
 export type LeaderRow = { account_id: string; score: number; is_agent: boolean; updated_ns: string };
 export type Entry = { picks: CategoryPicks[]; updated_ns: string };
+
+/** An account's spendable testnet NEAR in yoctoNEAR, or null if it doesn't exist / can't be read. */
+export async function availableBalance(accountId: string): Promise<bigint | null> {
+  for (const url of RPC_URLS) {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          id: "market",
+          method: "query",
+          params: { request_type: "view_account", finality: "final", account_id: accountId },
+        }),
+        signal: AbortSignal.timeout(8000),
+      });
+      const json = await res.json();
+      if (json.result) return BigInt(json.result.amount);
+      return null;
+    } catch {
+      // try the next RPC
+    }
+  }
+  return null;
+}
